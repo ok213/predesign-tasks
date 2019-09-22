@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<Context>
+<!--        <Resource name="jdbc/test01" global="jdbc/test01" auth="Container" type="javax.sql.DataSource"-->
+<!--                  maxActive="100" maxIdle="30" maxWait="10000"-->
+<!--                  username="ok" password="password2008" driverClassName="com.mysql.cj.jdbc.Driver"-->
+<!--                  url="jdbc:mysql://192.168.1.13:3306/test01" />-->
+
+        <Resource name="jdbc/task01"
+                  global="jdbc/task01"
+                  factory="org.apache.tomcat.jdbc.pool.DataSourceFactory"
+                  auth="Container"
+                  type="javax.sql.DataSource"
+                  username="root"
+                  password="toor"
+                  driverClassName="com.mysql.cj.jdbc.Driver"
+                  description="MySQL Connection Pool"
+                  url="jdbc:mysql://192.168.1.13:3306/task01"
+                  maxTotal="10"
+                  maxIdle="10"
+                  maxWaitMillis="10000"
+                  removeAbandonedTimeout="300"
+                  defaultAutoCommit="true" />
+
+<!--        <Resource name="jdbc/javausecasedb" auth="Container"-->
+<!--                  type="javax.sql.DataSource" factory="org.apache.tomcat.jdbc.pool.DataSourceFactory"-->
+<!--                  testWhileIdle="true" testOnBorrow="true" testOnReturn="false"-->
+<!--                  validationQuery="SELECT 1" validationInterval="30000"-->
+<!--                  timeBetweenEvictionRunsMillis="30000" maxActive="100" minIdle="10"-->
+<!--                  maxWait="10000" initialSize="10" removeAbandonedTimeout="60"-->
+<!--                  removeAbandoned="true" logAbandoned="true" minEvictableIdleTimeMillis="30000"-->
+<!--                  jmxEnabled="true"-->
+<!--                  jdbcInterceptors="org.apache.tomcat.jdbc.pool.interceptor.ConnectionState;-->
+<!--        	                        org.apache.tomcat.jdbc.pool.interceptor.StatementFinalizer"-->
+<!--                  username="root" password="password" driverClassName="com.mysql.jdbc.Driver"-->
+<!--                  url="jdbc:mysql://localhost:3306/javausecasedb" />-->
+
+</Context>
