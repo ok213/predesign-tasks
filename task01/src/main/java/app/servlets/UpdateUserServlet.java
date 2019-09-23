@@ -1,6 +1,6 @@
 package app.servlets;
 
-import app.models.Model;
+import app.service.UserService;
 import app.models.User;
 
 import javax.servlet.RequestDispatcher;
@@ -14,8 +14,6 @@ import java.io.IOException;
 @WebServlet("/update")
 public class UpdateUserServlet extends HttpServlet {
 
-    private Model model = Model.getInstance();
-
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         RequestDispatcher requestDispatcher = req.getRequestDispatcher("views/update.jsp");
@@ -26,12 +24,13 @@ public class UpdateUserServlet extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         User user = new User(req.getParameter("login"),
                              req.getParameter("password"),
-                             "anonymous");
-        if (model.validate(user)) {
+                             "");
+        UserService userService = new UserService();
+        if (!userService.validateUser(user)) {
             String newlogin = req.getParameter("newlogin");
             String newpassword = req.getParameter("newpassword");
             String newname = req.getParameter("newname");
-            model.update(user, newlogin, newpassword, newname);
+            userService.updateUser(user, newlogin, newpassword, newname);
         }
 
         getServletContext().getRequestDispatcher("/").forward(req, resp);

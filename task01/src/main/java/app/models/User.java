@@ -1,10 +1,26 @@
 package app.models;
+import javax.persistence.*;
 
+@Entity
+@Table(name = "users")
+//@NamedQueries({
+//        @NamedQuery(name = "getAllCases", query = "SELECT c FROM Case c JOIN FETCH c.client JOIN FETCH c.firstInstance " +
+//                "JOIN FETCH c.secondInstance JOIN FETCH c.thirdInstance JOIN FETCH c.category")
+//})
 public class User {
 
+    @Id
+    @Column(name = "id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    @Column(name = "login")
     private String login;
+
+    @Column(name = "password")
     private String password;
+
+    @Column(name = "name")
     private String name;
 
     public User() {
@@ -26,6 +42,10 @@ public class User {
 
     public Long getId() {
         return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getLogin() {

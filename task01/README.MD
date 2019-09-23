@@ -11,6 +11,7 @@ _Использовать:_
  - Tomcat
  - maven
  - JSP
+ - JSTL
  - сервлеты
  - JDBC.
   

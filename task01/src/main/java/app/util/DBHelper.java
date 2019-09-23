@@ -7,13 +7,15 @@ import javax.sql.DataSource;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+import javax.annotation.Resource;
 
+@Deprecated
 public class DBHelper {
 
     private final String RESOURSE_NAME = "jdbc/task01";
-    private final String RESOURSE_URL = "jdbc:mysql://192.168.1.13:3306/task01";
+    private final String RESOURSE_URL = "jdbc:mysql://localhost:3306/task01";
     private final String RESOURSE_USER = "root";
-    private final String RESOURSE_PASSWORD = "toor";
+    private final String RESOURSE_PASSWORD = "toortoor";
 
     private static Connection connection;
 

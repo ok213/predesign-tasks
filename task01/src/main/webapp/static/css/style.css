@@ -1,0 +1,50 @@
+body {
+    font-family: 'Palatino Linotype', serif;
+    max-width: 500px;
+    padding: 0px 30px;
+}
+table {
+    width: 100%; /* Ширина таблицы */
+    border-spacing: 0px; /*Расстояние между ячейками*/
+    border: 1px solid grey;
+}
+td, th {
+    padding: 3px;
+    border: 1px solid grey;
+}
+td:first-child {
+    text-align: center;
+}
+a {
+    margin-left: 30px;
+}
+fieldset {
+    margin-bottom: 15px;
+    padding: 10px;
+}
+legend {
+    padding: 0px 3px;
+    font-weight: bold;
+    font-variant: small-caps;
+}
+label {
+    width: 110px;
+    display: inline-block;
+    vertical-align: top;
+    margin: 6px;
+}
+em {
+    font-weight: bold;
+    font-style: normal;
+    color: #f00;
+}
+input:focus {
+    background: #eaeaea;
+}
+input {
+    width: 250px;
+}
+input[type=submit] {
+    width: 170px;
+    padding: 10px;
+}

@@ -11,17 +11,15 @@
 
   <resource-ref>
     <description>MySQL Connection Pool</description>
-    <res-ref-name>jdbc/test01</res-ref-name>
+    <res-ref-name>jdbc/task01</res-ref-name>
     <res-type>javax.sql.DataSource</res-type>
     <res-auth>Container</res-auth>
   </resource-ref>
 
-<!--  <resource-ref>-->
-<!--    <description>MySQL Datasource example</description>-->
-<!--    <res-ref-name>jdbc/test01</res-ref-name>-->
-<!--    <res-type>javax.sql.DataSource</res-type>-->
-<!--    <res-auth>Container</res-auth>-->
-<!--  </resource-ref>-->
+<!--  <servlet-mapping>-->
+<!--    <servlet-name>default</servlet-name>-->
+<!--    <url-pattern>/resources/*</url-pattern>-->
+<!--  </servlet-mapping>-->
 
 <!--  &lt;!&ndash; users list servlet &ndash;&gt;-->
 <!--  <servlet>-->

@@ -1,6 +1,6 @@
 package app.servlets;
 
-import app.models.Model;
+import app.service.UserService;
 import app.models.User;
 
 import javax.servlet.RequestDispatcher;
@@ -14,8 +14,6 @@ import java.io.IOException;
 @WebServlet("/delete")
 public class DeleteUserServlet extends HttpServlet {
 
-    private Model model = Model.getInstance();
-
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         RequestDispatcher requestDispatcher = req.getRequestDispatcher("views/delete.jsp");
@@ -27,7 +25,7 @@ public class DeleteUserServlet extends HttpServlet {
         User user = new User(req.getParameter("login"),
                              req.getParameter("password"),
                              req.getParameter("name"));
-        model.delete(user);
+        new UserService().deleteUser(user);
         getServletContext().getRequestDispatcher("/").forward(req, resp);
     }
 }

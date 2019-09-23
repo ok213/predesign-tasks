@@ -1,9 +1,7 @@
 package app.servlets;
 
-import app.DAO.UserDAO;
-import app.models.Model;
+import app.service.UserService;
 import app.models.User;
-import app.util.DBHelper;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -19,7 +17,10 @@ public class ListUsersServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        List<User> listUsers = new UserDAO(DBHelper.getConnection()).getUsers();
+
+//        List<User> listUsers = new UserDAO(DBHelper.getConnection()).getUsers();
+        List<User> listUsers = new UserService().getUsers();
+
         req.setAttribute("listUsers", listUsers);
 
         RequestDispatcher requestDispatcher = req.getRequestDispatcher("views/list.jsp");
