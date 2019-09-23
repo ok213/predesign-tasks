@@ -13,32 +13,30 @@ import java.util.List;
 
 public class UserService {
 
-    @Resource(lookup = "java:comp/env", name="jdbc/task01")
     private DataSource dataSource;
 
-//    public UserService() {
-//        try {
-//            Context ctx = (Context) new InitialContext().lookup("java:comp/env");
-//            dataSource = (DataSource) ctx.lookup("jdbc/task01");
-//        } catch (NamingException e) {
-//            e.printStackTrace();
-//        }
-//    }
+    public UserService() {
+        try {
+            Context ctx = (Context) new InitialContext().lookup("java:comp/env");
+            dataSource = (DataSource) ctx.lookup("jdbc/task01");
+        } catch (NamingException e) {
+            e.printStackTrace();
+        }
+    }
 
     public boolean validateUser(User user) {
         boolean validateResult = false;
         // language=MYSQL
         try (Connection connection = dataSource.getConnection();
              PreparedStatement preparedStatement =
-                     connection.prepareStatement("SELECT count(*) FROM users WHERE login=? AND password=?;");) {
+                     connection.prepareStatement("SELECT count(*) FROM users WHERE login=? AND password=?;")) {
             preparedStatement.setString(1, user.getLogin());
             preparedStatement.setString(2, user.getPassword());
             preparedStatement.executeQuery();
             ResultSet resultSet = preparedStatement.getResultSet();
             resultSet.next();
-            validateResult = resultSet.getInt(1) == 1 ? true : false;
+            validateResult = resultSet.getInt(1) == 1;
             resultSet.close();
-            return false;
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -49,7 +47,7 @@ public class UserService {
         // language=MYSQL
         try (Connection connection = dataSource.getConnection();
              PreparedStatement preparedStatement =
-                     connection.prepareStatement("INSERT INTO users(login, password, name) VALUES(?, ?, ?);");) {
+                     connection.prepareStatement("INSERT INTO users(login, password, name) VALUES(?, ?, ?);")) {
             preparedStatement.setString(1, user.getLogin());
             preparedStatement.setString(2, user.getPassword());
             preparedStatement.setString(3, user.getName());
@@ -96,12 +94,12 @@ public class UserService {
         }
     }
 
-    public User getUserByLoginAndPassword(String login, String password) {
+    private User getUserByLoginAndPassword(String login, String password) {
         User user = null;
         // language=MYSQL
         try (Connection connection = dataSource.getConnection();
              PreparedStatement preparedStatement =
-                     connection.prepareStatement("SELECT * FROM users WHERE login=? AND password=?;");) {
+                     connection.prepareStatement("SELECT * FROM users WHERE login=? AND password=?;")) {
             preparedStatement.setString(1, login);
             preparedStatement.setString(2, password);
             preparedStatement.executeQuery();

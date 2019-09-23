@@ -26,7 +26,7 @@ public class UpdateUserServlet extends HttpServlet {
                              req.getParameter("password"),
                              "");
         UserService userService = new UserService();
-        if (!userService.validateUser(user)) {
+        if (userService.validateUser(user)) {
             String newlogin = req.getParameter("newlogin");
             String newpassword = req.getParameter("newpassword");
             String newname = req.getParameter("newname");

@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -6,13 +6,13 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Task01 Delete user</title>
-  <link href="static/css/style.css" rel="stylesheet">
+  <link href="${pageContext.request.contextPath}/static/css/style.css" rel="stylesheet">
 </head>
 
 <body>
   <h2>TASK 01</h2>
   <hr><br>
-  <form action="/delete" method="POST">
+  <form action="${pageContext.request.contextPath}/delete" method="POST">
     <fieldset>
       <legend>Delete user:</legend>
       <label for="login">Login <em>*</em></label>
