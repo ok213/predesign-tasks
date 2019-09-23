@@ -3,8 +3,8 @@
 <Context>
         <Resource name="jdbc/task01" global="jdbc/task01" auth="Container" type="javax.sql.DataSource"
                   maxActive="100" maxIdle="30" maxWait="10000"
-                  username="ok" password="password2008" driverClassName="com.mysql.cj.jdbc.Driver"
-                  url="jdbc:mysql://192.168.1.13:3306/task01" />
+                  username="root" password="toortoor" driverClassName="com.mysql.cj.jdbc.Driver"
+                  url="jdbc:mysql://127.0.0.1:3306/task01" />
 
 <!--        <Resource name="jdbc/task01"-->
 <!--                  global="jdbc/task01"-->
