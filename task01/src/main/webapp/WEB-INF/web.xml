@@ -16,55 +16,6 @@
     <res-auth>Container</res-auth>
   </resource-ref>
 
-<!--  <servlet-mapping>-->
-<!--    <servlet-name>default</servlet-name>-->
-<!--    <url-pattern>/resources/*</url-pattern>-->
-<!--  </servlet-mapping>-->
-
-<!--  &lt;!&ndash; users list servlet &ndash;&gt;-->
-<!--  <servlet>-->
-<!--    <servlet-name>listUsers</servlet-name>-->
-<!--    <servlet-class>app.servlets.ListUsersServlet</servlet-class>-->
-<!--  </servlet>-->
-
-<!--  <servlet-mapping>-->
-<!--    <servlet-name>listUsers</servlet-name>-->
-<!--    <url-pattern>/</url-pattern>-->
-<!--  </servlet-mapping>-->
-
-<!--  &lt;!&ndash; create user servlet &ndash;&gt;-->
-<!--  <servlet>-->
-<!--    <servlet-name>createUser</servlet-name>-->
-<!--    <servlet-class>app.servlets.CreateUserServlet</servlet-class>-->
-<!--  </servlet>-->
-
-<!--  <servlet-mapping>-->
-<!--    <servlet-name>createUser</servlet-name>-->
-<!--    <url-pattern>/create</url-pattern>-->
-<!--  </servlet-mapping>-->
-
-<!--  &lt;!&ndash; update user servlet &ndash;&gt;-->
-<!--  <servlet>-->
-<!--    <servlet-name>updateUser</servlet-name>-->
-<!--    <servlet-class>app.servlets.UpdateUserServlet</servlet-class>-->
-<!--  </servlet>-->
-
-<!--  <servlet-mapping>-->
-<!--    <servlet-name>updateUser</servlet-name>-->
-<!--    <url-pattern>/update</url-pattern>-->
-<!--  </servlet-mapping>-->
-
-<!--  &lt;!&ndash; delete user servlet &ndash;&gt;-->
-<!--  <servlet>-->
-<!--    <servlet-name>deleteUser</servlet-name>-->
-<!--    <servlet-class>app.servlets.DeleteUserServlet</servlet-class>-->
-<!--  </servlet>-->
-
-<!--  <servlet-mapping>-->
-<!--    <servlet-name>deleteUser</servlet-name>-->
-<!--    <url-pattern>/delete</url-pattern>-->
-<!--  </servlet-mapping>-->
-
 </web-app>
 
 

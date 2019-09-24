@@ -1,7 +1,7 @@
-package app.servlets;
+package app.servlet;
 
+import app.model.User;
 import app.service.UserService;
-import app.models.User;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -10,22 +10,24 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.List;
 
-@WebServlet("/delete")
-public class DeleteUserServlet extends HttpServlet {
+@WebServlet("/")
+public class ReadUsersServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        RequestDispatcher requestDispatcher = req.getRequestDispatcher("views/delete.jsp");
+
+        List<User> listUsers = new UserService().getUsers();
+        req.setAttribute("listUsers", listUsers);
+
+        RequestDispatcher requestDispatcher = req.getRequestDispatcher("views/read.jsp");
         requestDispatcher.forward(req, resp);
     }
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        User user = new User(req.getParameter("login"),
-                             req.getParameter("password"),
-                             req.getParameter("name"));
-        new UserService().deleteUser(user);
-        getServletContext().getRequestDispatcher("/").forward(req, resp);
+        doGet(req, resp);
     }
+
 }

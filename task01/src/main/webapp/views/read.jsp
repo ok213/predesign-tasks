@@ -2,9 +2,9 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/sql" prefix="sql" %>
 
-<sql:query var="rs" dataSource="jdbc/task01">
-    SELECT * FROM users
-</sql:query>
+<%--<sql:query var="rs" dataSource="jdbc/task01">--%>
+<%--    SELECT * FROM users--%>
+<%--</sql:query>--%>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -31,24 +31,24 @@
           <th>name</th>
 
 <%-- JSP with Connection Pooling --%>
-          <c:forEach var="row" items="${rs.rows}">
-            <tr>
-                <td>${row.id}</td>
-                <td>${row.login}</td>
-                <td>${row.password}</td>
-                <td>${row.name}</td>
-            </tr>
-          </c:forEach>
+<%--          <c:forEach var="row" items="${rs.rows}">--%>
+<%--            <tr>--%>
+<%--                <td>${row.id}</td>--%>
+<%--                <td>${row.login}</td>--%>
+<%--                <td>${row.password}</td>--%>
+<%--                <td>${row.name}</td>--%>
+<%--            </tr>--%>
+<%--          </c:forEach>--%>
 
 <%-- JNDI Datasource--%>
-<%--        <c:forEach items="${listUsers}" var="user">--%>
-<%--            <tr>--%>
-<%--                <td>${user.getId()}</td>--%>
-<%--                <td>${user.getLogin()}</td>--%>
-<%--                <td>${user.getPassword()}</td>--%>
-<%--                <td>${user.getName()}</td>--%>
-<%--            </tr>--%>
-<%--        </c:forEach>--%>
+        <c:forEach items="${listUsers}" var="user">
+            <tr>
+                <td>${user.getId()}</td>
+                <td>${user.getLogin()}</td>
+                <td>${user.getPassword()}</td>
+                <td>${user.getName()}</td>
+            </tr>
+        </c:forEach>
         </table>
 </body>
 </html>

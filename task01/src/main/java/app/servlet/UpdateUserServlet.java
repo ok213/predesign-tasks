@@ -1,7 +1,7 @@
-package app.servlets;
+package app.servlet;
 
 import app.service.UserService;
-import app.models.User;
+import app.model.User;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -25,13 +25,11 @@ public class UpdateUserServlet extends HttpServlet {
         User user = new User(req.getParameter("login"),
                              req.getParameter("password"),
                              "");
-        UserService userService = new UserService();
-        if (userService.validateUser(user)) {
-            String newlogin = req.getParameter("newlogin");
-            String newpassword = req.getParameter("newpassword");
-            String newname = req.getParameter("newname");
-            userService.updateUser(user, newlogin, newpassword, newname);
-        }
+
+        String[] params = {req.getParameter("newlogin"),
+                           req.getParameter("newpassword"),
+                           req.getParameter("newname")};
+        new UserService().updateUser(user, params);
 
         getServletContext().getRequestDispatcher("/").forward(req, resp);
     }

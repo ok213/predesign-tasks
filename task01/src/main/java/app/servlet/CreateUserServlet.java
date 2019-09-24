@@ -1,7 +1,7 @@
-package app.servlets;
+package app.servlet;
 
 import app.service.UserService;
-import app.models.User;
+import app.model.User;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -26,10 +26,7 @@ public class CreateUserServlet extends HttpServlet {
                              req.getParameter("password"),
                              req.getParameter("name"));
 
-        UserService userService = new UserService();
-        if (!userService.validateUser(user)) {
-            userService.createUser(user);
-        }
+        new UserService().create(user);
 
         getServletContext().getRequestDispatcher("/").forward(req, resp);
     }
