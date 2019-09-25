@@ -2,28 +2,26 @@ package app.dao;
 
 import app.model.User;
 
-import javax.naming.Context;
-import javax.naming.InitialContext;
-import javax.naming.NamingException;
-import javax.sql.DataSource;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
 public class UserDaoImpl implements UserDao{
 
+    private final String dbUrl = "jdbc:mysql://127.0.0.1:3306/task01";
+    private final String dbUsername = "ok";
+    private final String dbPassword = "password2019";
+
     private Connection connection;
 
     public UserDaoImpl() {
         try {
-            Context ctx = (Context) new InitialContext().lookup("java:comp/env");
-            DataSource dataSource = (DataSource) ctx.lookup("jdbc/task01");
-            if (dataSource != null) {
-                connection = dataSource.getConnection();
-            }
-        } catch (NamingException | SQLException e) {
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            connection = DriverManager.getConnection(dbUrl, dbUsername, dbPassword);
+        } catch (ClassNotFoundException | SQLException e) {
             e.printStackTrace();
         }
+
     }
 
     public Connection getConnection() {

@@ -3,10 +3,6 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "users")
-//@NamedQueries({
-//        @NamedQuery(name = "getAllCases", query = "SELECT c FROM Case c JOIN FETCH c.client JOIN FETCH c.firstInstance " +
-//                "JOIN FETCH c.secondInstance JOIN FETCH c.thirdInstance JOIN FETCH c.category")
-//})
 public class User {
 
     @Id
