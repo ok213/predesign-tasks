@@ -50,14 +50,18 @@ public class UserDaoImpl implements UserDao{
     }
 
     @Override
-    public void update(long id, String[] params) {
+    public void update(String[] params) {
         // language=MYSQL
         try (PreparedStatement preparedStatement =
                      connection.prepareStatement("UPDATE users SET login=?, password=?, name=? WHERE id=?;")) {
-            preparedStatement.setString(1, params[0]);
-            preparedStatement.setString(2, params[1]);
-            preparedStatement.setString(3, params[2]);
-            preparedStatement.setLong(4, id);
+            preparedStatement.setString(1, params[1]);
+            preparedStatement.setString(2, params[2]);
+            preparedStatement.setString(3, params[3]);
+            try {
+                preparedStatement.setLong(4, Long.parseLong(params[0]));
+            } catch (NumberFormatException e) {
+                return;
+            }
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
@@ -65,15 +69,36 @@ public class UserDaoImpl implements UserDao{
     }
 
     @Override
-    public void delete(long id) {
+    public void delete(String id) {
         // language=MYSQL
         try (PreparedStatement preparedStatement =
-                     connection.prepareStatement("DELETE from users WHERE id=?;")) {
-            preparedStatement.setLong(1, id);
+                     connection.prepareStatement("DELETE FROM users WHERE id=?;")) {
+            preparedStatement.setLong(1, Long.parseLong(id));
             preparedStatement.executeUpdate();
-        } catch (SQLException e) {
+        } catch (SQLException | NumberFormatException e) {
             e.printStackTrace();
         }
+    }
+
+    @Override
+    public User getById(String id) {
+        User user = null;
+        // language=MYSQL
+        try (PreparedStatement preparedStatement =
+                connection.prepareStatement("SELECT * FROM users WHERE id=?;")) {
+            preparedStatement.setLong(1, Long.parseLong(id));
+            preparedStatement.executeQuery();
+            ResultSet resultSet = preparedStatement.getResultSet();
+            resultSet.next();
+            user = new User(resultSet.getLong("id"),
+                    resultSet.getString("login"),
+                    resultSet.getString("password"),
+                    resultSet.getString("name"));
+            resultSet.close();
+        } catch (SQLException | NumberFormatException e) {
+            e.printStackTrace();
+        }
+        return user;
     }
 
     @Override

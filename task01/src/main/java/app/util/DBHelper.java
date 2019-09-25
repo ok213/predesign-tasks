@@ -6,9 +6,9 @@ import java.sql.SQLException;
 
 public class DBHelper {
 
-    private static final String dbUrl = "jdbc:mysql://127.0.0.1:3306/task01";
+    private static final String dbUrl = "jdbc:mysql://192.168.1.13:3306/task01";
     private static final String dbUsername = "ok";
-    private static final String dbPassword = "password2019";
+    private static final String dbPassword = "password2008";
 
     private static Connection connection;
 

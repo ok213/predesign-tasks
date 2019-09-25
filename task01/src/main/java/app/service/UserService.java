@@ -5,7 +5,7 @@ import app.model.User;
 
 import java.util.List;
 
-public class UserService {
+public class UserService implements UserServiceInterface{
 
     private UserDaoImpl userDaoImpl;
 
@@ -13,6 +13,7 @@ public class UserService {
         userDaoImpl = new UserDaoImpl();
     }
 
+    @Override
     public void create(User user) {
         // если такого пользователя нет, то создаем
         if (!validate(user)) {
@@ -20,34 +21,34 @@ public class UserService {
         }
     }
 
+    @Override
     public List<User> getAll() {
         return userDaoImpl.readAll();
     }
 
-    // String[] params : [login, password, name]
+    // String[] params : [id, login, password, name]
+    @Override
     public void updateUser(User user, String[] params) {
         if (validate(user)) {
-            // нужно, чтобы у User был всегда логин и пароль
-            if ("".equals(params[0])) {
-                params[0] = user.getLogin();
-            }
-            if ("".equals(params[1])) {
-                params[1] = user.getPassword();
-            }
-
-            long id = userDaoImpl.getByLoginAndPassword(user.getLogin(), user.getPassword()).getId();
-             userDaoImpl.update(id, params);
+             userDaoImpl.update(params);
         }
     }
 
-    public void delete(User user) {
-        if (validate(user)) {
-            long id = userDaoImpl.getByLoginAndPassword(user.getLogin(), user.getPassword()).getId();
-            userDaoImpl.delete(id);
+    // String[] params : [id, login, password]
+    @Override
+    public void delete(String[] params) {
+        if (validate(new User(params[1], params[2], ""))) {
+            userDaoImpl.delete(params[0]);
         }
     }
 
-    private boolean validate(User user) {
+    @Override
+    public User getById(String id) {
+        return userDaoImpl.getById(id);
+    }
+
+    @Override
+    public boolean validate(User user) {
         User userFromBase = userDaoImpl.getByLoginAndPassword(user.getLogin(), user.getPassword());
         return user.equals(userFromBase);
     }

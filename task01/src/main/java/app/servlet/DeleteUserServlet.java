@@ -15,16 +15,21 @@ public class DeleteUserServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        getServletContext().getRequestDispatcher("/views/delete.jsp").forward(req, resp);
+        User user = new UserService().getById(req.getParameter("id"));
+
+        req.setAttribute("user", user);
+        req.setAttribute("link", req.getServletPath());
+
+        getServletContext().getRequestDispatcher("/views/updateAndDelete.jsp").forward(req, resp);
     }
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        User user = new User(req.getParameter("login"),
-                req.getParameter("password"),
-                req.getParameter("name"));
+        String[] params = {req.getParameter("iden"),
+                           req.getParameter("login"),
+                           req.getParameter("password")};
 
-        new UserService().delete(user);
+        new UserService().delete(params);
 
         getServletContext().getRequestDispatcher("/").forward(req, resp);
     }

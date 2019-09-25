@@ -15,18 +15,23 @@ public class UpdateUserServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        getServletContext().getRequestDispatcher("/views/update.jsp").forward(req, resp);
+        User user = new UserService().getById(req.getParameter("id"));
+
+        req.setAttribute("user", user);
+        req.setAttribute("link", req.getServletPath());
+
+        getServletContext().getRequestDispatcher("/views/updateAndDelete.jsp").forward(req, resp);
     }
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         User user = new User(req.getParameter("login"),
-                req.getParameter("password"),
-                "");
+                             req.getParameter("password"),"");
 
-        String[] params = {req.getParameter("newlogin"),
-                req.getParameter("newpassword"),
-                req.getParameter("newname")};
+        String[] params = {req.getParameter("iden"),
+                           req.getParameter("newlogin"),
+                           req.getParameter("newpassword"),
+                           req.getParameter("newname")};
 
         new UserService().updateUser(user, params);
 
