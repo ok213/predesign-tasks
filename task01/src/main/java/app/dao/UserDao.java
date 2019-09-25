@@ -9,7 +9,7 @@ public interface UserDao {
 
     void create(User user);
     List<User> readAll();
-    void update(long id, String[] params);
+    void update(long id, String[] params);  // String[] params : [login, password, name]
     void delete(long id);
 
     User getByLoginAndPassword(String login, String password);

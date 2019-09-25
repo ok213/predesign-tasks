@@ -1,18 +1,33 @@
 package app.dao;
 
-import app.dao.UserDao;
 import app.model.User;
 
+import javax.naming.Context;
+import javax.naming.InitialContext;
+import javax.naming.NamingException;
+import javax.sql.DataSource;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class UserDaoImpl implements UserDao {
+public class UserDaoImpl implements UserDao{
 
     private Connection connection;
 
-    public UserDaoImpl(Connection connection) {
-        this.connection = connection;
+    public UserDaoImpl() {
+        try {
+            Context ctx = (Context) new InitialContext().lookup("java:comp/env");
+            DataSource dataSource = (DataSource) ctx.lookup("jdbc/task01");
+            if (dataSource != null) {
+                connection = dataSource.getConnection();
+            }
+        } catch (NamingException | SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public Connection getConnection() {
+        return connection;
     }
 
     @Override
@@ -38,9 +53,9 @@ public class UserDaoImpl implements UserDao {
             ResultSet resultSet = statement.getResultSet();
             while (resultSet.next()) {
                 usersList.add(new User(resultSet.getLong("id"),
-                                       resultSet.getString("login"),
-                                       resultSet.getString("password"),
-                                       resultSet.getString("name")));
+                        resultSet.getString("login"),
+                        resultSet.getString("password"),
+                        resultSet.getString("name")));
             }
             resultSet.close();
         } catch (SQLException e) {
@@ -53,7 +68,7 @@ public class UserDaoImpl implements UserDao {
     public void update(long id, String[] params) {
         // language=MYSQL
         try (PreparedStatement preparedStatement =
-                    connection.prepareStatement("UPDATE users SET login=?, password=?, name=? WHERE id=?;")) {
+                     connection.prepareStatement("UPDATE users SET login=?, password=?, name=? WHERE id=?;")) {
             preparedStatement.setString(1, params[0]);
             preparedStatement.setString(2, params[1]);
             preparedStatement.setString(3, params[2]);
@@ -68,7 +83,7 @@ public class UserDaoImpl implements UserDao {
     public void delete(long id) {
         // language=MYSQL
         try (PreparedStatement preparedStatement =
-                connection.prepareStatement("DELETE from users WHERE id=?;")) {
+                     connection.prepareStatement("DELETE from users WHERE id=?;")) {
             preparedStatement.setLong(1, id);
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
@@ -88,13 +103,13 @@ public class UserDaoImpl implements UserDao {
             ResultSet resultSet = preparedStatement.getResultSet();
             resultSet.next();
             user = new User(resultSet.getLong("id"),
-                            resultSet.getString("login"),
-                            resultSet.getString("password"),
-                            resultSet.getString("name"));
+                    resultSet.getString("login"),
+                    resultSet.getString("password"),
+                    resultSet.getString("name"));
             resultSet.close();
-            } catch (SQLException ex) {
-                ex.printStackTrace();
-            }
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
         return user;
     }
 }

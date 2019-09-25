@@ -87,7 +87,7 @@ public class User {
 
         User user = (User) o;
 
-        if (name != null ? !name.equals(user.name) : user.name != null) {
+        if (login != null ? !login.equals(user.login) : user.login != null) {
             return false;
         }
 
@@ -101,3 +101,4 @@ public class User {
         return result;
     }
 }
+
