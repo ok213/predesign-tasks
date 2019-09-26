@@ -1,7 +1,7 @@
 package app.servlet;
 
-import app.service.UserService;
-import app.model.User;
+import app.service.UserServiceImpl;
+import app.service.UserServiceImplHb;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -15,22 +15,10 @@ public class DeleteUserServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        User user = new UserService().getById(req.getParameter("id"));
+//        new UserServiceImpl().delete(Long.parseLong(req.getParameter("id")));
+        UserServiceImplHb.getInstance().delete(Long.parseLong(req.getParameter("id")));
 
-        req.setAttribute("user", user);
-        req.setAttribute("link", req.getServletPath());
-
-        getServletContext().getRequestDispatcher("/views/updateAndDelete.jsp").forward(req, resp);
+        resp.sendRedirect("/");
     }
 
-    @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        String[] params = {req.getParameter("iden"),
-                           req.getParameter("login"),
-                           req.getParameter("password")};
-
-        new UserService().delete(params);
-
-        getServletContext().getRequestDispatcher("/").forward(req, resp);
-    }
 }

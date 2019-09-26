@@ -1,7 +1,8 @@
 package app.servlet;
 
-import app.service.UserService;
+import app.service.UserServiceImpl;
 import app.model.User;
+import app.service.UserServiceImplHb;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -15,26 +16,20 @@ public class UpdateUserServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        User user = new UserService().getById(req.getParameter("id"));
+        long id = Long.parseLong(req.getParameter("id"));
+//        req.setAttribute("user", new UserServiceImpl().getById(id));
+        req.setAttribute("user", UserServiceImplHb.getInstance().getById(id));
 
-        req.setAttribute("user", user);
-        req.setAttribute("link", req.getServletPath());
-
-        getServletContext().getRequestDispatcher("/views/updateAndDelete.jsp").forward(req, resp);
+        getServletContext().getRequestDispatcher("/views/update.jsp").forward(req, resp);
     }
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        User user = new User(req.getParameter("login"),
-                             req.getParameter("password"),"");
+        User user = new User(Long.parseLong(req.getParameter("id")), req.getParameter("login"),
+                             req.getParameter("password"), req.getParameter("name"));
+//        new UserServiceImpl().updateUser(user);
+        UserServiceImplHb.getInstance().updateUser(user);
 
-        String[] params = {req.getParameter("iden"),
-                           req.getParameter("newlogin"),
-                           req.getParameter("newpassword"),
-                           req.getParameter("newname")};
-
-        new UserService().updateUser(user, params);
-
-        getServletContext().getRequestDispatcher("/").forward(req, resp);
+        resp.sendRedirect("/");
     }
 }

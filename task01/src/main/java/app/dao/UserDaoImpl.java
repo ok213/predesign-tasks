@@ -1,7 +1,7 @@
 package app.dao;
 
 import app.model.User;
-import app.util.DBHelper;
+import app.util.DBHelperJDBC;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -12,7 +12,7 @@ public class UserDaoImpl implements UserDao{
     private Connection connection;
 
     public UserDaoImpl() {
-        connection = DBHelper.getConnection();
+        connection = DBHelperJDBC.getConnection();
     }
 
     @Override
@@ -50,18 +50,14 @@ public class UserDaoImpl implements UserDao{
     }
 
     @Override
-    public void update(String[] params) {
+    public void update(User user) {
         // language=MYSQL
         try (PreparedStatement preparedStatement =
                      connection.prepareStatement("UPDATE users SET login=?, password=?, name=? WHERE id=?;")) {
-            preparedStatement.setString(1, params[1]);
-            preparedStatement.setString(2, params[2]);
-            preparedStatement.setString(3, params[3]);
-            try {
-                preparedStatement.setLong(4, Long.parseLong(params[0]));
-            } catch (NumberFormatException e) {
-                return;
-            }
+            preparedStatement.setString(1, user.getLogin());
+            preparedStatement.setString(2, user.getPassword());
+            preparedStatement.setString(3, user.getName());
+            preparedStatement.setLong(4, user.getId());
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
@@ -69,33 +65,32 @@ public class UserDaoImpl implements UserDao{
     }
 
     @Override
-    public void delete(String id) {
+    public void delete(long id) {
         // language=MYSQL
         try (PreparedStatement preparedStatement =
                      connection.prepareStatement("DELETE FROM users WHERE id=?;")) {
-            preparedStatement.setLong(1, Long.parseLong(id));
+            preparedStatement.setLong(1, id);
             preparedStatement.executeUpdate();
-        } catch (SQLException | NumberFormatException e) {
+        } catch (SQLException e) {
             e.printStackTrace();
         }
     }
 
     @Override
-    public User getById(String id) {
+    public User getById(long id) {
         User user = null;
         // language=MYSQL
         try (PreparedStatement preparedStatement =
                 connection.prepareStatement("SELECT * FROM users WHERE id=?;")) {
-            preparedStatement.setLong(1, Long.parseLong(id));
+            preparedStatement.setLong(1, id);
             preparedStatement.executeQuery();
             ResultSet resultSet = preparedStatement.getResultSet();
             resultSet.next();
-            user = new User(resultSet.getLong("id"),
-                    resultSet.getString("login"),
-                    resultSet.getString("password"),
-                    resultSet.getString("name"));
+            user = new User(id, resultSet.getString("login"),
+                                resultSet.getString("password"),
+                                resultSet.getString("name"));
             resultSet.close();
-        } catch (SQLException | NumberFormatException e) {
+        } catch (SQLException e) {
             e.printStackTrace();
         }
         return user;
