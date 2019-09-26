@@ -1,24 +1,35 @@
 package app.dao;
 
 import app.model.User;
+import app.util.DBHelper;
 import org.hibernate.NonUniqueResultException;
 import org.hibernate.Session;
+import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.query.Query;
 
 import javax.persistence.NoResultException;
 import java.util.List;
 
-public class UserDaoImplHb implements UserDao{
+public class UserDaoImplHb implements UserDao {
 
-    private Session session;
+    private static UserDaoImplHb userDaoImplHb;
+    private SessionFactory sessionFactory;
 
-    public UserDaoImplHb(Session session) {
-        this.session = session;
+    private UserDaoImplHb(SessionFactory sessionFactory) {
+        this.sessionFactory = sessionFactory;
+    }
+
+    public static UserDaoImplHb getInstance() {
+        if (userDaoImplHb == null) {
+            userDaoImplHb = new UserDaoImplHb(DBHelper.getSessionFactory());
+        }
+        return userDaoImplHb;
     }
 
     @Override
     public void create(User user) {
+        Session session = sessionFactory.openSession();
         Transaction transaction = session.beginTransaction();
         session.save(user);
         transaction.commit();
@@ -27,6 +38,7 @@ public class UserDaoImplHb implements UserDao{
 
     @Override
     public List<User> readAll() {
+        Session session = sessionFactory.openSession();
         Transaction transaction = session.beginTransaction();
         // language=MYSQL
         List<User> listUsers = session.createQuery("FROM User").list();
@@ -37,6 +49,7 @@ public class UserDaoImplHb implements UserDao{
 
     @Override
     public void update(User user) {
+        Session session = sessionFactory.openSession();
         Transaction transaction = session.beginTransaction();
         User userOriginal = (User) session.load(User.class, user.getId());
         transaction.commit();
@@ -51,6 +64,7 @@ public class UserDaoImplHb implements UserDao{
 
     @Override
     public void delete(long id) {
+        Session session = sessionFactory.openSession();
         Transaction transaction = session.beginTransaction();
         // language=MYSQL
         Query<User> query = session.createQuery("DELETE FROM User WHERE id=:id");
@@ -63,6 +77,7 @@ public class UserDaoImplHb implements UserDao{
     @Override
     public User getById(long id) {
         User user = null;
+        Session session = sessionFactory.openSession();
         Transaction transaction = session.beginTransaction();
         // language=MYSQL
         Query<User> query = session.createQuery("FROM User WHERE id=:id");
@@ -80,6 +95,7 @@ public class UserDaoImplHb implements UserDao{
     @Override
     public User getByLoginAndPassword(String login, String password) {
         User user = null;
+        Session session = sessionFactory.openSession();
         Transaction transaction = session.beginTransaction();
         // language=MYSQL
         Query<User> query = session.createQuery("FROM User WHERE login=:login AND password=:password");

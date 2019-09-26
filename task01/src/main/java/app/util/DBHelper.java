@@ -29,7 +29,7 @@ public class DBHelper {
 
         configuration.setProperty("hibernate.dialect", "org.hibernate.dialect.MySQL8Dialect");
         configuration.setProperty("hibernate.connection.driver_class", "com.mysql.jdbc.Driver");
-        configuration.setProperty("hibernate.connection.url", "jdbc:mysql://localhost:3306/task01");
+        configuration.setProperty("hibernate.connection.url", "jdbc:mysql://192.168.1.13:3306/task01");
         configuration.setProperty("hibernate.connection.username", "ok");
         configuration.setProperty("hibernate.connection.password", "password2019");
         configuration.setProperty("hibernate.show_sql", "true");

@@ -26,7 +26,7 @@ public class CreateUserServlet extends HttpServlet {
                 req.getParameter("name"));
 
 //        new UserServiceImpl().create(user);
-        UserServiceImplHb.getInstance().create(user);
+        new UserServiceImplHb().create(user);
 
         getServletContext().getRequestDispatcher("/").forward(req, resp);
     }

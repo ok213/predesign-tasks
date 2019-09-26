@@ -16,7 +16,7 @@ public class ReadUsersServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 //        req.setAttribute("listUsers", new UserServiceImpl().getAll());
-        req.setAttribute("listUsers", UserServiceImplHb.getInstance().getAll());
+        req.setAttribute("listUsers", new UserServiceImplHb().getAll());
 
         getServletContext().getRequestDispatcher("/views/read.jsp").forward(req, resp);
     }

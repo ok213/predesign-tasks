@@ -16,7 +16,7 @@ public class DeleteUserServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 //        new UserServiceImpl().delete(Long.parseLong(req.getParameter("id")));
-        UserServiceImplHb.getInstance().delete(Long.parseLong(req.getParameter("id")));
+        new UserServiceImplHb().delete(Long.parseLong(req.getParameter("id")));
 
         resp.sendRedirect("/");
     }
