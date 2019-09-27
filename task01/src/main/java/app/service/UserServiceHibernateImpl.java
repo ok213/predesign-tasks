@@ -5,6 +5,7 @@ import app.model.User;
 
 import java.util.List;
 
+@Deprecated
 public class UserServiceHibernateImpl implements UserService {
 
     @Override

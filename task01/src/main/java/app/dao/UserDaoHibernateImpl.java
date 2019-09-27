@@ -13,7 +13,7 @@ import java.util.List;
 
 public class UserDaoHibernateImpl implements UserDao {
 
-    private static UserDaoHibernateImpl userDaoImplHb;
+    private static UserDaoHibernateImpl instance;
     private SessionFactory sessionFactory;
 
     private UserDaoHibernateImpl(SessionFactory sessionFactory) {
@@ -21,10 +21,10 @@ public class UserDaoHibernateImpl implements UserDao {
     }
 
     public static UserDaoHibernateImpl getInstance() {
-        if (userDaoImplHb == null) {
-            userDaoImplHb = new UserDaoHibernateImpl(DBHelperHibernate.getSessionFactory());
+        if (instance == null) {
+            instance = new UserDaoHibernateImpl(DBHelperHibernate.getSessionFactory());
         }
-        return userDaoImplHb;
+        return instance;
     }
 
     @Override

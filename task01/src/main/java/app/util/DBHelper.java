@@ -51,7 +51,7 @@ public class DBHelper {
 
     public Configuration getConfiguration() {
         Configuration configuration = new Configuration();
-//        configuration.addAnnotatedClass(User.class);
+        configuration.addAnnotatedClass(User.class);
         configuration.setProperty("hibernate.dialect", "org.hibernate.dialect.MySQL8Dialect");
         configuration.setProperty("hibernate.connection.driver_class", "com.mysql.cj.jdbc.Driver");
         configuration.setProperty("hibernate.connection.url", "jdbc:mysql://127.0.0.1:3306/task01");

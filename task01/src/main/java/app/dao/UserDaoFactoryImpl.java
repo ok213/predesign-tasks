@@ -1,11 +1,22 @@
 package app.dao;
 
 import java.io.IOException;
-import java.util.InvalidPropertiesFormatException;
 import java.util.Properties;
 
 public class UserDaoFactoryImpl implements UserDaoFactory {
-    // UserDaoFactory - абстрактная фабрика которая возвращает реализацию дао на основе файла property
+
+    private static UserDaoFactoryImpl instance;
+
+    private UserDaoFactoryImpl() {
+
+    }
+
+    public static UserDaoFactoryImpl getInstance() {
+        if (instance == null) {
+            instance = new UserDaoFactoryImpl();
+        }
+        return instance;
+    }
 
     @Override
     public UserDao createUserDao() {
@@ -13,7 +24,7 @@ public class UserDaoFactoryImpl implements UserDaoFactory {
         final String dbType = prop.getProperty("db.type");
 
         if (dbType.equals("jdbc")) {
-            return new UserDaoJDBCImpl();
+            return UserDaoJDBCImpl.getInstance();
         }
         if (dbType.equals("hibernate")) {
             return UserDaoHibernateImpl.getInstance();

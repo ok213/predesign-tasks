@@ -1,52 +1,52 @@
 package app.service;
 
-import app.dao.UserDaoJDBCImpl;
+import app.dao.UserDao;
+import app.dao.UserDaoFactory;
+import app.dao.UserDaoFactoryImpl;
 import app.model.User;
 
 import java.util.List;
 
-@Deprecated
-public class UserServiceJDBCImpl implements UserService {
+public class UserServiceImpl implements UserService {
 
-    private UserDaoJDBCImpl userDaoJDBCImpl;
+    private UserDao userDao;
 
-    public UserServiceJDBCImpl() {
-        userDaoJDBCImpl = UserDaoJDBCImpl.getInstance();
+    public UserServiceImpl() {
+        userDao = UserDaoFactoryImpl.getInstance().createUserDao();
     }
 
     @Override
     public void create(User user) {
         if (!validate(user)) {
-            userDaoJDBCImpl.create(user);
+            userDao.create(user);
         }
     }
 
     @Override
     public List<User> getAll() {
-        return userDaoJDBCImpl.readAll();
+        return userDao.readAll();
     }
 
     @Override
     public void updateUser(User user) {
         if (getById(user.getId()) != null) {
-             userDaoJDBCImpl.update(user);
+            userDao.update(user);
         }
     }
 
     @Override
     public void delete(long id) {
-        userDaoJDBCImpl.delete(id);
+        userDao.delete(id);
     }
 
     @Override
     public User getById(long id) {
-        return userDaoJDBCImpl.getById(id);
+        return userDao.getById(id);
     }
 
     @Override
     public boolean validate(User user) {
-        User userFromBase = userDaoJDBCImpl.getByLoginAndPassword(user.getLogin(), user.getPassword());
+        User userFromBase = userDao.getByLoginAndPassword(user.getLogin(), user.getPassword());
         return user.equals(userFromBase);
     }
-
 }
