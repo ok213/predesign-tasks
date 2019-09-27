@@ -1,6 +1,6 @@
 package app.servlet;
 
-import app.service.UserServiceHibernateImpl;
+import app.service.UserServiceImpl;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -14,8 +14,8 @@ public class DeleteUserServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-//        new UserServiceImpl().delete(Long.parseLong(req.getParameter("id")));
-        new UserServiceHibernateImpl().delete(Long.parseLong(req.getParameter("id")));
+
+        new UserServiceImpl().delete(Long.parseLong(req.getParameter("id")));
 
         resp.sendRedirect("/");
     }

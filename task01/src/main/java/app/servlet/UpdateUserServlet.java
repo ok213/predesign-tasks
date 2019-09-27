@@ -1,7 +1,7 @@
 package app.servlet;
 
 import app.model.User;
-import app.service.UserServiceHibernateImpl;
+import app.service.UserServiceImpl;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -16,8 +16,7 @@ public class UpdateUserServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         long id = Long.parseLong(req.getParameter("id"));
-//        req.setAttribute("user", new UserServiceImpl().getById(id));
-        req.setAttribute("user", new UserServiceHibernateImpl().getById(id));
+        req.setAttribute("user", new UserServiceImpl().getById(id));
 
         getServletContext().getRequestDispatcher("/views/update.jsp").forward(req, resp);
     }
@@ -26,8 +25,8 @@ public class UpdateUserServlet extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         User user = new User(Long.parseLong(req.getParameter("id")), req.getParameter("login"),
                              req.getParameter("password"), req.getParameter("name"));
-//        new UserServiceImpl().updateUser(user);
-        new UserServiceHibernateImpl().updateUser(user);
+
+        new UserServiceImpl().updateUser(user);
 
         resp.sendRedirect("/");
     }

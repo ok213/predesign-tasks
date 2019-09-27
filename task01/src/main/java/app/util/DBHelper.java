@@ -1,8 +1,10 @@
 package app.util;
 
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+import java.util.Properties;
 
 import app.model.User;
 import org.hibernate.cfg.Configuration;
@@ -37,12 +39,12 @@ public class DBHelper {
 
     public Connection getConnection() {
         Connection connection = null;
-        String dbUrl = "";
-        String dbUsername = "";
-        String dbPassword = "";
+        Properties prop = getProperties();
         try {
-            Class.forName("com.mysql.cj.jdbc.Driver");
-            connection = DriverManager.getConnection(dbUrl, dbUsername, dbPassword);
+            Class.forName(prop.getProperty("db.Driver"));
+            connection = DriverManager.getConnection(prop.getProperty("db.Url"),
+                                                     prop.getProperty("db.Username"),
+                                                     prop.getProperty("db.Password"));
         } catch (ClassNotFoundException | SQLException e) {
             e.printStackTrace();
         }
@@ -50,18 +52,27 @@ public class DBHelper {
     }
 
     public Configuration getConfiguration() {
+        Properties prop = getProperties();
         Configuration configuration = new Configuration();
         configuration.addAnnotatedClass(User.class);
-        configuration.setProperty("hibernate.dialect", "org.hibernate.dialect.MySQL8Dialect");
-        configuration.setProperty("hibernate.connection.driver_class", "com.mysql.cj.jdbc.Driver");
-        configuration.setProperty("hibernate.connection.url", "jdbc:mysql://127.0.0.1:3306/task01");
-        configuration.setProperty("hibernate.connection.username", "ok");
-        configuration.setProperty("hibernate.connection.password", "password2019");
-        configuration.setProperty("hibernate.show_sql", "true");
-        configuration.setProperty("hibernate.hbm2ddl.auto", "create");
-//        configuration.setProperty("hibernate.hbm2ddl.auto", "update");
+        configuration.setProperty("hibernate.dialect", prop.getProperty("hibernate.dialect"));
+        configuration.setProperty("hibernate.connection.driver_class", prop.getProperty("db.Driver"));
+        configuration.setProperty("hibernate.connection.url", prop.getProperty("db.Url"));
+        configuration.setProperty("hibernate.connection.username", prop.getProperty("db.Username"));
+        configuration.setProperty("hibernate.connection.password", prop.getProperty("db.Password"));
+        configuration.setProperty("hibernate.show_sql", prop.getProperty("hibernate.show_sql"));
+        configuration.setProperty("hibernate.hbm2ddl.auto", prop.getProperty("hibernate.hbm2ddl.auto"));
         return configuration;
     }
 
+    private Properties getProperties() {
+        Properties properties = new Properties();
+        try {
+            properties.load(getClass().getClassLoader().getResourceAsStream("config.properties"));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return properties;
+    }
 
 }

@@ -1,12 +1,15 @@
 package app.dao;
 
 import app.model.User;
-import app.util.DBHelperHibernate;
+import app.util.DBHelper;
 import org.hibernate.NonUniqueResultException;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
+import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
+import org.hibernate.cfg.Configuration;
 import org.hibernate.query.Query;
+import org.hibernate.service.ServiceRegistry;
 
 import javax.persistence.NoResultException;
 import java.util.List;
@@ -16,13 +19,16 @@ public class UserDaoHibernateImpl implements UserDao {
     private static UserDaoHibernateImpl instance;
     private SessionFactory sessionFactory;
 
-    private UserDaoHibernateImpl(SessionFactory sessionFactory) {
-        this.sessionFactory = sessionFactory;
+    private UserDaoHibernateImpl(Configuration configuration) {
+        StandardServiceRegistryBuilder builder = new StandardServiceRegistryBuilder();
+        builder.applySettings(configuration.getProperties());
+        ServiceRegistry serviceRegistry = builder.build();
+        this.sessionFactory = configuration.buildSessionFactory(serviceRegistry);
     }
 
     public static UserDaoHibernateImpl getInstance() {
         if (instance == null) {
-            instance = new UserDaoHibernateImpl(DBHelperHibernate.getSessionFactory());
+            instance = new UserDaoHibernateImpl(DBHelper.getInstance().getConfiguration());
         }
         return instance;
     }

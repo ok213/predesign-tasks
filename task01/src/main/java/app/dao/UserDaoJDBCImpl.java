@@ -2,7 +2,6 @@ package app.dao;
 
 import app.model.User;
 import app.util.DBHelper;
-import app.util.DBHelperJDBC;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -19,7 +18,7 @@ public class UserDaoJDBCImpl implements UserDao{
 
     public static UserDaoJDBCImpl getInstance() {
         if (instance == null) {
-            instance = new UserDaoJDBCImpl(DBHelperJDBC.getConnection());
+            instance = new UserDaoJDBCImpl(DBHelper.getInstance().getConnection());
         }
         return instance;
     }
