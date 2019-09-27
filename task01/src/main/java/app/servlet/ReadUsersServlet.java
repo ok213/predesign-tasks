@@ -1,7 +1,6 @@
 package app.servlet;
 
-import app.service.UserServiceImpl;
-import app.service.UserServiceImplHb;
+import app.service.UserServiceHibernateImpl;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -16,7 +15,7 @@ public class ReadUsersServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 //        req.setAttribute("listUsers", new UserServiceImpl().getAll());
-        req.setAttribute("listUsers", new UserServiceImplHb().getAll());
+        req.setAttribute("listUsers", new UserServiceHibernateImpl().getAll());
 
         getServletContext().getRequestDispatcher("/views/read.jsp").forward(req, resp);
     }

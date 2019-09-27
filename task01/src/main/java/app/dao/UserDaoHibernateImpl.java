@@ -1,7 +1,7 @@
 package app.dao;
 
 import app.model.User;
-import app.util.DBHelper;
+import app.util.DBHelperHibernate;
 import org.hibernate.NonUniqueResultException;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -11,18 +11,18 @@ import org.hibernate.query.Query;
 import javax.persistence.NoResultException;
 import java.util.List;
 
-public class UserDaoImplHb implements UserDao {
+public class UserDaoHibernateImpl implements UserDao {
 
-    private static UserDaoImplHb userDaoImplHb;
+    private static UserDaoHibernateImpl userDaoImplHb;
     private SessionFactory sessionFactory;
 
-    private UserDaoImplHb(SessionFactory sessionFactory) {
+    private UserDaoHibernateImpl(SessionFactory sessionFactory) {
         this.sessionFactory = sessionFactory;
     }
 
-    public static UserDaoImplHb getInstance() {
+    public static UserDaoHibernateImpl getInstance() {
         if (userDaoImplHb == null) {
-            userDaoImplHb = new UserDaoImplHb(DBHelper.getSessionFactory());
+            userDaoImplHb = new UserDaoHibernateImpl(DBHelperHibernate.getSessionFactory());
         }
         return userDaoImplHb;
     }

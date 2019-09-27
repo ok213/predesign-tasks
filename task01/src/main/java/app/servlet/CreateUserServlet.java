@@ -1,8 +1,7 @@
 package app.servlet;
 
-import app.service.UserServiceImpl;
 import app.model.User;
-import app.service.UserServiceImplHb;
+import app.service.UserServiceHibernateImpl;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -26,7 +25,7 @@ public class CreateUserServlet extends HttpServlet {
                 req.getParameter("name"));
 
 //        new UserServiceImpl().create(user);
-        new UserServiceImplHb().create(user);
+        new UserServiceHibernateImpl().create(user);
 
         getServletContext().getRequestDispatcher("/").forward(req, resp);
     }
