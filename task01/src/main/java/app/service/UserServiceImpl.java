@@ -1,8 +1,8 @@
 package app.service;
 
 import app.dao.UserDao;
-import app.dao.UserDaoFactory;
-import app.dao.UserDaoFactoryImpl;
+import app.factory.UserDaoFactory;
+import app.factory.UserDaoFactoryImpl;
 import app.model.User;
 
 import java.util.List;
@@ -12,7 +12,8 @@ public class UserServiceImpl implements UserService {
     private UserDao userDao;
 
     public UserServiceImpl() {
-        userDao = UserDaoFactoryImpl.getInstance().createUserDao();
+        UserDaoFactory factory = new UserDaoFactoryImpl().getUserDaoFactory();
+        userDao = factory.createUserDao();
     }
 
     @Override

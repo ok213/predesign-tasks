@@ -1,33 +1,23 @@
-package app.dao;
+package app.factory;
+
+import app.dao.UserDao;
+import app.dao.UserDaoHibernateImpl;
+import app.dao.UserDaoJDBCImpl;
 
 import java.io.IOException;
 import java.util.Properties;
 
-public class UserDaoFactoryImpl implements UserDaoFactory {
+public class UserDaoFactoryImpl {
 
-    private static UserDaoFactoryImpl instance;
-
-    private UserDaoFactoryImpl() {
-
-    }
-
-    public static UserDaoFactoryImpl getInstance() {
-        if (instance == null) {
-            instance = new UserDaoFactoryImpl();
-        }
-        return instance;
-    }
-
-    @Override
-    public UserDao createUserDao() {
+    public UserDaoFactory getUserDaoFactory() {
         Properties prop = getProperties();
         final String dbType = prop.getProperty("db.type");
 
         if (dbType.equals("jdbc")) {
-            return UserDaoJDBCImpl.getInstance();
+            return new UserDaoFactoryJDBC();
         }
         if (dbType.equals("hibernate")) {
-            return UserDaoHibernateImpl.getInstance();
+            return new UserDaoFactoryHibernate();
         }
 
         throw new RuntimeException("Properties: connection type not specified!");
