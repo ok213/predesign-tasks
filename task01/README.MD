@@ -14,8 +14,10 @@ _Использовать:_
  - JSTL
  - сервлеты
  - JDBC.
-  
 
-
-
-
+_Дополнительно:_
+- UserDao две реализации UserDaoJDBCimpl и UserDaoHibernateImpl;
+- UserDaoFactory - абстрактная фабрика, которая возвращает реализацию DAO
+  на основе файла property;
+- DBHelper - синглтон, у него есть два метода getConnection и getConfiguration,
+  которые отдают Connection для jdbc dao и Configuration для hibernatedao соотвтетственно
