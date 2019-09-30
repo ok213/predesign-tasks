@@ -39,7 +39,7 @@ public class DBHelper {
 
     public Connection getConnection() {
         Connection connection = null;
-        Properties prop = getProperties();
+        Properties prop = PropHelper.getInstance().getProperties();
         try {
             Class.forName(prop.getProperty("db.Driver"));
             connection = DriverManager.getConnection(prop.getProperty("db.Url"),
@@ -52,7 +52,7 @@ public class DBHelper {
     }
 
     public Configuration getConfiguration() {
-        Properties prop = getProperties();
+        Properties prop = PropHelper.getInstance().getProperties();
         Configuration configuration = new Configuration();
         configuration.addAnnotatedClass(User.class);
         configuration.setProperty("hibernate.dialect", prop.getProperty("hibernate.dialect"));
@@ -63,16 +63,6 @@ public class DBHelper {
         configuration.setProperty("hibernate.show_sql", prop.getProperty("hibernate.show_sql"));
         configuration.setProperty("hibernate.hbm2ddl.auto", prop.getProperty("hibernate.hbm2ddl.auto"));
         return configuration;
-    }
-
-    private Properties getProperties() {
-        Properties properties = new Properties();
-        try {
-            properties.load(getClass().getClassLoader().getResourceAsStream("config.properties"));
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        return properties;
     }
 
 }
