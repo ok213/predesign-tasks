@@ -10,14 +10,40 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.util.List;
+
 @Controller
-public class UpdateController {
+public class UserController {
 
     private UserService userService;
 
     @Autowired
     public void setUserService(UserService userService) {
         this.userService = userService;
+    }
+
+    @GetMapping("/")
+    public ModelAndView allFilms() {
+        List<User> users = userService.getAll();
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName("read");
+        modelAndView.addObject("users", users);
+        return modelAndView;
+    }
+
+    @GetMapping("/create")
+    public ModelAndView addPage() {
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName("update");
+        return modelAndView;
+    }
+
+    @PostMapping("/create")
+    public ModelAndView addFilm(@ModelAttribute("user") User user) {
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName("redirect:/");
+        userService.create(user);
+        return modelAndView;
     }
 
     @GetMapping("/update/{id}")
@@ -34,6 +60,14 @@ public class UpdateController {
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("redirect:/");
         userService.update(user);
+        return modelAndView;
+    }
+
+    @GetMapping("/delete/{id}")
+    public ModelAndView deleteFilm(@PathVariable("id") long id) {
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName("redirect:/");
+        userService.delete(id);
         return modelAndView;
     }
 
