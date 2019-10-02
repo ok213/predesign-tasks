@@ -12,6 +12,10 @@
     <properties>
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
+        <mysql.mysql-connector-java.version>8.0.17</mysql.mysql-connector-java.version>
+        <org.hibernate.hibernate-core.version>5.4.4.Final</org.hibernate.hibernate-core.version>
+        <org.springframework.version>5.2.0.RELEASE</org.springframework.version>
+        <org.apache.tomcat.version>9.0.26</org.apache.tomcat.version>
     </properties>
 
     <dependencies>
@@ -24,14 +28,33 @@
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-webmvc</artifactId>
-            <version>5.1.10.RELEASE</version>
+            <version>${org.springframework.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-orm</artifactId>
+            <version>${org.springframework.version}</version>
         </dependency>
         <dependency>
             <groupId>jstl</groupId>
             <artifactId>jstl</artifactId>
             <version>1.2</version>
         </dependency>
-
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+            <version>${mysql.mysql-connector-java.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-core</artifactId>
+            <version>${org.hibernate.hibernate-core.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.tomcat</groupId>
+            <artifactId>tomcat-dbcp</artifactId>
+            <version>${org.apache.tomcat.version}</version>
+        </dependency>
     </dependencies>
 
 </project>

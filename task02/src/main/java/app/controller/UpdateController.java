@@ -1,9 +1,8 @@
 package app.controller;
 
-import app.model.Model;
 import app.model.User;
 import app.service.UserService;
-import app.service.UserServiceImpl;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -14,9 +13,16 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 public class UpdateController {
 
+    private UserService userService;
+
+    @Autowired
+    public void setUserService(UserService userService) {
+        this.userService = userService;
+    }
+
     @GetMapping("/update/{id}")
-    public ModelAndView updatePage(@PathVariable("id") int id) {
-        User user = Model.getInstance().getUserService().getById(id);
+    public ModelAndView updatePage(@PathVariable("id") long id) {
+        User user = userService.getById(id);
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("update");
         modelAndView.addObject("user", user);
@@ -27,7 +33,8 @@ public class UpdateController {
     public ModelAndView updateUser(@ModelAttribute("film") User user) {
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("redirect:/");
-        Model.getInstance().getUserService().update(user);
+        userService.update(user);
         return modelAndView;
     }
+
 }

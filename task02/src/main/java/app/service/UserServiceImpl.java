@@ -1,39 +1,61 @@
 package app.service;
 
 import app.dao.UserDAO;
-import app.dao.UserDAOImpl;
 import app.model.User;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
 @Service
 public class UserServiceImpl implements UserService {
 
-    private UserDAO userDAO = new UserDAOImpl();
+    private UserDAO userDAO;
 
-    @Override
-    public void create(User user) {
-        userDAO.create(user);
+    @Autowired
+    public void setUserDAO(UserDAO userDAO) {
+        this.userDAO = userDAO;
     }
 
     @Override
-    public List<User> readAll() {
+    @Transactional
+    public void create(User user) {
+        if (!validate(user)) {
+            userDAO.create(user);
+        }
+    }
+
+    @Override
+    @Transactional
+    public List<User> getAll() {
         return userDAO.readAll();
     }
 
     @Override
+    @Transactional
     public void update(User user) {
-        userDAO.update(user);
+        if (getById(user.getId()) != null) {
+            userDAO.update(user);
+        }
     }
 
     @Override
+    @Transactional
     public void delete(long id) {
         userDAO.delete(id);
     }
 
     @Override
+    @Transactional
     public User getById(long id) {
         return userDAO.getById(id);
+    }
+
+    @Override
+    @Transactional
+    public boolean validate(User user) {
+        User userFromBase = userDAO.getByLoginAndPassword(user.getLogin(), user.getPassword());
+        return user.equals(userFromBase);
     }
 }

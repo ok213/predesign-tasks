@@ -12,4 +12,5 @@ public interface UserDAO {
     void delete(long id);
 
     User getById(long id);
+    User getByLoginAndPassword(String login, String password);
 }

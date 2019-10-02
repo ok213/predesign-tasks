@@ -14,13 +14,13 @@
         }
     </style>
 </head>
-<body style="font-family: 'Palatino Linotype', serif; max-width: 500px; padding: 0px 30px;">
+<body style="font-family: 'Palatino Linotype', serif; max-width: 500px; padding-left: 30px;">
 <h2>TASK 02</h2>
 <hr><br>
 <p>
     <a href="<c:url value="/create"/>" style="margin-left: 30px;">CREATE USER</a>
 </p>
-<table style="width: 100%; border-spacing: 0px; border: 1px solid grey;">
+<table style="width: 100%; border-spacing: 0; border: 1px solid grey;">
     <tr>
         <th>id</th>
         <th>login</th>
@@ -30,13 +30,13 @@
     </tr>
     <c:forEach var="user" items="${users}">
         <tr>
-            <td style="text-align: center;">${user.getId()}</td>
-            <td>${user.getLogin()}</td>
-            <td>${user.getPassword()}</td>
-            <td>${user.getName()}</td>
+            <td style="text-align: center;">${user.id}</td>
+            <td>${user.login}</td>
+            <td>${user.password}</td>
+            <td>${user.name}</td>
             <td style="text-align: center;">
-                <a href="/update/${user.getId()}">edit</a>&nbsp;&nbsp;
-                <a href="/delete/${user.getId()}">delete</a>
+                <a href="/update/${user.id}">edit</a>&nbsp;&nbsp;
+                <a href="/delete/${user.id}">delete</a>
             </td>
         </tr>
     </c:forEach>
