@@ -1,6 +1,6 @@
 package app.service;
 
-import app.model.User;
+import app.entity.User;
 
 import java.util.List;
 
@@ -12,6 +12,6 @@ public interface UserService {
     void delete(long id);
 
     User getById(long id);
-    boolean validate(User user);
+
 
 }
