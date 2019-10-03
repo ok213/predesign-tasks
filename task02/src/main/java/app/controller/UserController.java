@@ -39,7 +39,7 @@ public class UserController {
     }
 
     @PostMapping("/create")
-    public ModelAndView addFilm(@ModelAttribute("user") User user) {
+    public ModelAndView addUser(@ModelAttribute("user") User user) {
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("redirect:/");
         userService.create(user);

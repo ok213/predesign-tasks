@@ -1,27 +1,30 @@
 package app.config;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.orm.jpa.JpaTransactionManager;
+import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
 @Configuration
+@EnableTransactionManagement
 @ComponentScan(basePackages = "app")
 public class HibernateConfig {
 
-    private EntityManagerFactory entityManagerFactory;
-
-    @Autowired
-    public void setEntityManagerFactory(EntityManagerFactory entityManagerFactory) {
-        this.entityManagerFactory = entityManagerFactory;
+    @Bean
+    public EntityManagerFactory entityManagerFactory() {
+        return Persistence.createEntityManagerFactory("task02");
     }
 
     @Bean
-    public EntityManagerFactory getEntityManagerFactory() {
-        return Persistence.createEntityManagerFactory("task02");
+    public JpaTransactionManager transactionManager(EntityManagerFactory entityManagerFactory) {
+        JpaTransactionManager retVal = new JpaTransactionManager();
+        retVal.setEntityManagerFactory(entityManagerFactory);
+        return retVal;
     }
+
 
 }

@@ -6,9 +6,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+
 import java.util.List;
 
 @Service
+@Transactional
 public class UserServiceImpl implements UserService {
 
     private UserDAO userDAO;
@@ -19,7 +21,6 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    @Transactional
     public void create(User user) {
         if (!validate(user)) {
             userDAO.create(user);
@@ -27,13 +28,11 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    @Transactional
     public List<User> getAll() {
         return userDAO.readAll();
     }
 
     @Override
-    @Transactional
     public void update(User user) {
         if (getById(user.getId()) != null) {
             userDAO.update(user);
@@ -41,19 +40,16 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    @Transactional
     public void delete(long id) {
         userDAO.delete(id);
     }
 
     @Override
-    @Transactional
     public User getById(long id) {
         return userDAO.getById(id);
     }
 
     @Override
-    @Transactional
     public boolean validate(User user) {
         User userFromBase = userDAO.getByLoginAndPassword(user.getLogin(), user.getPassword());
         return user.equals(userFromBase);
