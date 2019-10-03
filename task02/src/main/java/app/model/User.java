@@ -1,12 +1,9 @@
-package app.entity;
-
-import org.hibernate.annotations.Proxy;
+package app.model;
 
 import javax.persistence.*;
 
 @Entity
 @Table(name = "users")
-@Proxy(lazy = false)
 public class User {
 
     @Id

@@ -1,6 +1,6 @@
 package app.controller;
 
-import app.entity.User;
+import app.model.User;
 import app.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;

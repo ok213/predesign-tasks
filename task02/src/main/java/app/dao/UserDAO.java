@@ -1,17 +1,16 @@
-package app.service;
+package app.dao;
 
 import app.model.User;
 
 import java.util.List;
 
-public interface UserService {
+public interface UserDAO {
 
     void create(User user);
-    List<User> getAll();
+    List<User> readAll();
     void update(User user);
     void delete(long id);
 
     User getById(long id);
-    boolean validate(User user);
-
+    User getByLoginAndPassword(String login, String password);
 }

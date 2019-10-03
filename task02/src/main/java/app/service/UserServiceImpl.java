@@ -1,7 +1,7 @@
 package app.service;
 
-import app.entity.User;
-import app.repository.UserRepository;
+import app.dao.UserDAO;
+import app.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -11,36 +11,51 @@ import java.util.List;
 @Service
 public class UserServiceImpl implements UserService {
 
-    private UserRepository userRepository;
+    private UserDAO userDAO;
 
     @Autowired
-    public void setUserRepository(UserRepository userRepository) {
-        this.userRepository = userRepository;
+    public void setUserDAO(UserDAO userDAO) {
+        this.userDAO = userDAO;
     }
 
     @Override
+    @Transactional
     public void create(User user) {
-        userRepository.saveAndFlush(user);
+        if (!validate(user)) {
+            userDAO.create(user);
+        }
     }
 
     @Override
+    @Transactional
     public List<User> getAll() {
-        return userRepository.findAll();
+        return userDAO.readAll();
     }
 
     @Override
+    @Transactional
     public void update(User user) {
-        userRepository.saveAndFlush(user);
+        if (getById(user.getId()) != null) {
+            userDAO.update(user);
+        }
     }
 
     @Override
+    @Transactional
     public void delete(long id) {
-        userRepository.deleteById(id);
+        userDAO.delete(id);
     }
 
     @Override
+    @Transactional
     public User getById(long id) {
-        return userRepository.getOne(id);
+        return userDAO.getById(id);
     }
 
+    @Override
+    @Transactional
+    public boolean validate(User user) {
+        User userFromBase = userDAO.getByLoginAndPassword(user.getLogin(), user.getPassword());
+        return user.equals(userFromBase);
+    }
 }
