@@ -23,7 +23,7 @@ public class UserController {
     }
 
     @GetMapping("/")
-    public ModelAndView allFilms() {
+    public ModelAndView allUsers() {
         List<User> users = userService.getAll();
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("read");
