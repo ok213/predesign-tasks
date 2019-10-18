@@ -74,15 +74,6 @@
         <input id="password" name="password" value="${user.password}"><br>
         <label for="name">Name</label>
         <input id="name" name="name" value="${user.name}"><br>
-
-        <label>Roles</label>
-        <select size="${user.authorities.size()}" multiple name="roles">
-        <c:forEach var="role" items="${user.authorities}">
-            <option value="${role.authority}">${role.authority}</option>
-        </c:forEach>
-        </select>
-
-
     </fieldset>
     <p>
         <c:if test="${empty userId}">

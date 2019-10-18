@@ -9,7 +9,7 @@ import java.util.Set;
 public class User {
 
     @Id
-    @Column(name = "id")
+    @Column(name = "id_user")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
@@ -22,8 +22,8 @@ public class User {
     @Column(name = "name")
     private String name;
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "user", fetch = FetchType.EAGER)
-    private Set<Authorities> authorities = new HashSet<>();
+//    @OneToMany(cascade = CascadeType.ALL, mappedBy = "user", fetch = FetchType.EAGER)
+//    private Set<Authorities> authorities = new HashSet<>();
 
     public User() {}
 
@@ -72,13 +72,13 @@ public class User {
         this.name = name;
     }
 
-    public Set<Authorities> getAuthorities() {
-        return authorities;
-    }
-
-    public void setAuthorities(Set<Authorities> authorities) {
-        this.authorities = authorities;
-    }
+//    public Set<Authorities> getAuthorities() {
+//        return authorities;
+//    }
+//
+//    public void setAuthorities(Set<Authorities> authorities) {
+//        this.authorities = authorities;
+//    }
 
     @Override
     public String toString() {

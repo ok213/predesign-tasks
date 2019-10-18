@@ -1,5 +1,4 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" session="false" %>
-<%@taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -12,7 +11,7 @@
 
 <h4>Login Form</h4>
 
-<form action='<spring:url value="/login"/>' method="post">
+<form action="/login" method="post">
     <table>
         <tr>
             <td>Login</td>
@@ -23,7 +22,7 @@
             <td><input type="password" name="password"></td>
         </tr>
         <tr>
-            <td><button type="submit">Login</button></td>
+            <td><button type="submit">Enter</button></td>
         </tr>
     </table>
     <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>

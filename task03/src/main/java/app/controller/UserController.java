@@ -62,8 +62,7 @@ public class UserController {
     }
 
     @GetMapping("/delete/{id}")
-    @Secured(value = {"ROLE_ADMIN"})
-    public ModelAndView deleteFilm(@PathVariable("id") long id) {
+    public ModelAndView deleteUser(@PathVariable("id") long id) {
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("redirect:/");
         userService.delete(id);

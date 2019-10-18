@@ -14,9 +14,9 @@ public class Authorities {
     @Column(name = "role")
     private String authority;
 
-    @ManyToOne(targetEntity = User.class)
-    @JoinColumn(name = "id")
-    private User user;
+//    @ManyToOne(targetEntity = User.class)
+//    @JoinColumn(name = "id")
+//    private User user;
 
     public Authorities() {}
 
@@ -36,11 +36,11 @@ public class Authorities {
         this.authority = authority;
     }
 
-    public User getUser() {
-        return user;
-    }
-
-    public void setUser(User user) {
-        this.user = user;
-    }
+//    public User getUser() {
+//        return user;
+//    }
+//
+//    public void setUser(User user) {
+//        this.user = user;
+//    }
 }
