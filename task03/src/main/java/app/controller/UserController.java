@@ -54,7 +54,7 @@ public class UserController {
     }
 
     @PostMapping("/update")
-    public ModelAndView updateUser(@ModelAttribute("film") User user) {
+    public ModelAndView updateUser(@ModelAttribute("user") User user) {
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("redirect:/");
         userService.update(user);

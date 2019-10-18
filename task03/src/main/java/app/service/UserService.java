@@ -1,5 +1,6 @@
 package app.service;
 
+import app.model.Authorities;
 import app.model.User;
 import org.springframework.security.core.userdetails.UserDetailsService;
 
@@ -14,5 +15,4 @@ public interface UserService extends UserDetailsService {
 
     User getById(long id);
     boolean validate(User user);
-
 }
