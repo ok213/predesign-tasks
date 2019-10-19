@@ -26,6 +26,7 @@
         <th>login</th>
         <th>password</th>
         <th>name</th>
+        <th>roles</th>
         <th>action</th>
     </tr>
     <c:forEach var="user" items="${users}">
@@ -34,6 +35,11 @@
             <td>${user.login}</td>
             <td>${user.password}</td>
             <td>${user.name}</td>
+            <td>
+                <c:forEach var="role" items="${user.roles}">
+                    ${role.role}<br>
+                </c:forEach>
+            </td>
             <td style="text-align: center;">
                 <c:if test = "${user.login != 'admin'}">
                     <c:if test="${user.login != 'user'}">

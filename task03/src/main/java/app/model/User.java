@@ -22,8 +22,10 @@ public class User {
     @Column(name = "name")
     private String name;
 
-//    @OneToMany(cascade = CascadeType.ALL, mappedBy = "user", fetch = FetchType.EAGER)
-//    private Set<Authorities> authorities = new HashSet<>();
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(name = "user_roles", joinColumns = @JoinColumn(name = "id_user"),
+                                    inverseJoinColumns = @JoinColumn(name = "id_role"))
+    private Set<Role> roles = new HashSet<>();
 
     public User() {}
 
@@ -72,13 +74,13 @@ public class User {
         this.name = name;
     }
 
-//    public Set<Authorities> getAuthorities() {
-//        return authorities;
-//    }
-//
-//    public void setAuthorities(Set<Authorities> authorities) {
-//        this.authorities = authorities;
-//    }
+    public Set<Role> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(Set<Role> roles) {
+        this.roles = roles;
+    }
 
     @Override
     public String toString() {
@@ -108,7 +110,6 @@ public class User {
         result = 31 * result + (password != null ? password.hashCode() : 0);
         return result;
     }
-
 }
 
 

@@ -1,6 +1,7 @@
 package app.security;
 
 import app.dao.UserDAO;
+import app.model.Role;
 import app.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationProvider;
@@ -9,18 +10,24 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Component
 public class AuthProviderImpl implements AuthenticationProvider {
 
-    @Autowired
     private UserDAO userDAO;
+
+    public AuthProviderImpl(UserDAO userDAO) {
+        this.userDAO = userDAO;
+    }
 
     @Override
     public Authentication authenticate(Authentication authentication) throws AuthenticationException {
@@ -33,7 +40,11 @@ public class AuthProviderImpl implements AuthenticationProvider {
         if (!password.equals(user.getPassword())) {
             throw new BadCredentialsException("Bad credentials");
         }
-        List<GrantedAuthority> authorities = new ArrayList<>();
+        Set<GrantedAuthority> authorities = new HashSet<>();
+        for (Role role : user.getRoles()) {
+            authorities.add(new SimpleGrantedAuthority(role.getRole()));
+        }
+
         return new UsernamePasswordAuthenticationToken(user, null, authorities);
     }
 
@@ -43,22 +54,4 @@ public class AuthProviderImpl implements AuthenticationProvider {
     }
 
 
-//    @Transactional(readOnly = true)
-//    @Override
-//    public UserDetails loadUserByUsername(String login) throws UsernameNotFoundException {
-//        User user = userDAO.getByLogin(login);
-//        UserBuilder builder = null;
-//        if (user != null) {
-//            builder = org.springframework.security.core.userdetails.User.withUsername(login);
-//            builder.disabled(false);
-//            builder.password(user.getPassword());
-//            String[] authorities = user.getAuthorities()
-//                    .stream().map(a -> a.getAuthority()).toArray(String[]::new);
-//
-//            builder.authorities(authorities);
-//        } else {
-//            throw new UsernameNotFoundException("User not found.");
-//        }
-//        return builder.build();
-//    }
 }

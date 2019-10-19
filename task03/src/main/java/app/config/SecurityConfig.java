@@ -16,8 +16,11 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 @EnableWebSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
-    @Autowired
     private AuthProviderImpl authProvider;
+
+    public SecurityConfig(AuthProviderImpl authProvider) {
+        this.authProvider = authProvider;
+    }
 
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
@@ -30,8 +33,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http.authorizeRequests()
                 .antMatchers("/login").anonymous()
                 .antMatchers("/**").authenticated()
-//                .antMatchers("/delete/**").access("hasRole('ADMIN')")
-//                .antMatchers("/create", "/update**").hasAnyRole("ADMIN", "USER")
                 .and()
                     .formLogin()
                     .loginPage("/login")
