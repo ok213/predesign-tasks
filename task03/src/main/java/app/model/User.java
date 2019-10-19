@@ -1,5 +1,7 @@
 package app.model;
 
+import org.springframework.security.core.userdetails.UserDetails;
+
 import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
@@ -22,7 +24,7 @@ public class User {
     @Column(name = "name")
     private String name;
 
-    @ManyToMany(fetch = FetchType.EAGER)
+    @OneToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "user_roles", joinColumns = @JoinColumn(name = "id_user"),
                                     inverseJoinColumns = @JoinColumn(name = "id_role"))
     private Set<Role> roles = new HashSet<>();
@@ -40,6 +42,19 @@ public class User {
         this.login = login;
         this.password = password;
         this.name = name;
+    }
+
+
+    public UserDetails getUserDetails() {
+        org.springframework.security.core.userdetails.User.UserBuilder builder = null;
+        builder = org.springframework.security.core.userdetails.User.withUsername(login);
+        builder.disabled(false);
+        builder.password(password);
+
+        String[] authorities = roles.stream().map(a -> a.getRole()).toArray(String[]::new);
+        builder.authorities(authorities);
+
+        return builder.build();
     }
 
     public Long getId() {
