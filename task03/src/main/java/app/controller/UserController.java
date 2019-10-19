@@ -12,13 +12,19 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.servlet.http.HttpServletRequest;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.List;
 
 @Controller
 public class UserController {
 
-    @Autowired
     private UserService userService;
+
+    public UserController(UserService userService) {
+        this.userService = userService;
+    }
 
     @GetMapping("/")
     public ModelAndView allUsers() {
@@ -26,6 +32,20 @@ public class UserController {
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("read");
         modelAndView.addObject("users", users);
+        return modelAndView;
+    }
+
+    @GetMapping("/user")
+    public ModelAndView homePageUser() {
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName("user");
+        return modelAndView;
+    }
+
+    @GetMapping("/error")
+    public ModelAndView errorPage(HttpServletRequest request) {
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName("error");
         return modelAndView;
     }
 
