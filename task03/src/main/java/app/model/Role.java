@@ -7,21 +7,19 @@ import javax.persistence.*;
 public class Role {
 
     @Id
-    @Column(name = "id_role")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer idRole;
+    private Long id;
 
-    @Column(name = "role")
     private String role;
 
     public Role() {}
 
-    public Integer getIdRole() {
-        return idRole;
+    public Long getId() {
+        return id;
     }
 
-    public void setIdRole(Integer idRole) {
-        this.idRole = idRole;
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getRole() {

@@ -1,5 +1,6 @@
 package app.config;
 
+import app.security.SecurityConfig;
 import org.springframework.core.annotation.Order;
 import org.springframework.web.filter.CharacterEncodingFilter;
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;

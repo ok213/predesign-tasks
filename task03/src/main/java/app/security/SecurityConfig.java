@@ -1,4 +1,4 @@
-package app.config;
+package app.security;
 
 import app.handler.CustomAccessDeniedHandler;
 import app.handler.CustomAuthenticationFailureHandler;
