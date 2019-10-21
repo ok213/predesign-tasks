@@ -20,7 +20,7 @@ public class User {
 
     private String name;
 
-    @OneToMany(fetch = FetchType.EAGER)
+    @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "user_roles", joinColumns = @JoinColumn(name = "user_id"),
                                     inverseJoinColumns = @JoinColumn(name = "role_id"))
     private Set<Role> roles = new HashSet<>();
@@ -42,8 +42,8 @@ public class User {
 
 
     public UserDetails getUserDetails() {
-        org.springframework.security.core.userdetails.User.UserBuilder builder = null;
-        builder = org.springframework.security.core.userdetails.User.withUsername(login);
+        org.springframework.security.core.userdetails.User.UserBuilder builder =
+                org.springframework.security.core.userdetails.User.withUsername(login);
         builder.disabled(false);
         builder.password(password);
 
