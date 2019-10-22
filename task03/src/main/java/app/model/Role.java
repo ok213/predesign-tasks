@@ -15,7 +15,7 @@ public class Role {
     @Column(length = 50)
     private String role;
 
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.EAGER, cascade = {CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REMOVE})
     @JoinTable(name = "user_roles", joinColumns = @JoinColumn(name = "role_id"),
                                     inverseJoinColumns = @JoinColumn(name = "user_id"))
     private Set<Role> users = new HashSet<>();

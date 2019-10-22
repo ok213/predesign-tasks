@@ -74,6 +74,10 @@
         <input id="password" name="password" value="${user.password}"><br>
         <label for="name">Name</label>
         <input id="name" name="name" value="${user.name}"><br>
+
+
+
+
     </fieldset>
     <p>
         <c:if test="${empty userId}">
