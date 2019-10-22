@@ -1,6 +1,7 @@
 package app.security;
 
 import app.dao.UserDAO;
+import app.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -9,7 +10,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 @Service
-public class UserDetailsServiceImp implements UserDetailsService {
+public class UserDetailsServiceImp implements UserDetailsService  {
 
     @Autowired
     private UserDAO userDAO;
@@ -17,7 +18,13 @@ public class UserDetailsServiceImp implements UserDetailsService {
     @Override
     @Transactional(readOnly = true)
     public UserDetails loadUserByUsername(String login) throws UsernameNotFoundException {
-        return userDAO.getByLogin(login).getUserDetails();
+        User user = userDAO.getByLogin(login);
+        if (user != null) {
+            return  new org.springframework.security.core.userdetails.User(
+                    user.getLogin(), user.getPassword(), user.getRoles());
+        } else {
+            throw new UsernameNotFoundException("User not found.");
+        }
     }
 
 }
