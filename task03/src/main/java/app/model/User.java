@@ -40,6 +40,11 @@ public class User {
         this.name = name;
     }
 
+    public UserDetails getUserDetails() {
+        return new org.springframework.security.core.userdetails.User(
+                getLogin(), getPassword(), getRoles());
+    }
+
     public Long getId() {
         return id;
     }
