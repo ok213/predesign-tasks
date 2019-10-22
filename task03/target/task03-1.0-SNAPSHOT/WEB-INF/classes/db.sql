@@ -29,7 +29,8 @@ CREATE TABLE user_roles (
     ENGINE = InnoDB;
 CREATE INDEX role_id ON user_roles (role_id);
 
-INSERT INTO users(login, password, name) VALUES('admin','admin','admin');
+INSERT INTO users(login, password, name, isAccountNonExpired, isAccountNonLocked, isCredentialsNonExpired, isEnabled)
+ VALUES('admin','admin','admin');
 INSERT INTO users(login, password, name) VALUES('user','user','user');
 
 INSERT INTO roles(role) VALUES('ROLE_ADMIN');

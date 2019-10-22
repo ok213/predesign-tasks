@@ -21,7 +21,7 @@ public class UserDetailsServiceImp implements UserDetailsService  {
         User user = userDAO.getByLogin(login);
         if (user != null) {
             return  new org.springframework.security.core.userdetails.User(
-                    user.getLogin(), user.getPassword(), user.getRoles());
+                    user.getLogin(), user.getPassword(), user.getAuthorities());
         } else {
             throw new UsernameNotFoundException("User not found.");
         }

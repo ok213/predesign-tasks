@@ -1,47 +1,44 @@
-USE task03;
+create schema if not exists task03 collate utf8mb4_0900_ai_ci;
 
-DROP TABLE users;
-CREATE TABLE users (
-    id          BIGINT          NOT NULL    AUTO_INCREMENT  PRIMARY KEY
-    ,login      VARCHAR(255)    NOT NULL
-    ,password   VARCHAR(255)    NOT NULL
-    ,name		VARCHAR(255)	NOT NULL
-)
-    ENGINE = InnoDB;
+create table if not exists roles
+(
+    id bigint auto_increment primary key,
+    role varchar(50) null
+);
 
-DROP TABLE roles;
-CREATE TABLE roles (
-    id          BIGINT          NOT NULL    AUTO_INCREMENT  PRIMARY KEY
-    ,role       VARCHAR(50)     NOT NULL
-)
-    ENGINE = InnoDB;
+create table if not exists users
+(
+    id bigint auto_increment primary key,
+    isAccountNonExpired bit not null,
+    isAccountNonLocked bit not null,
+    isCredentialsNonExpired bit not null,
+    isEnabled bit not null,
+    login varchar(255) null,
+    name varchar(255) null,
+    password varchar(255) null
+);
 
-DROP TABLE user_roles;
-CREATE TABLE user_roles (
-    user_id     BIGINT          NOT NULL
-    ,role_id    BIGINT          NOT NULL
+create table if not exists users_roles
+(
+    user_id bigint not null,
+    role_id bigint not null,
+    primary key (user_id, role_id),
+    constraint FK2o0jvgh89lemvvo17cbqvdxaa foreign key (user_id) references users (id),
+    constraint FKj6m8fwv7oqv74fcehir1a9ffy foreign key (role_id) references roles (id)
+);
 
-    ,CONSTRAINT user_roles_ibfk_1 FOREIGN KEY (user_id) REFERENCES users(id)
-    ,CONSTRAINT user_roles_ibfk_2 FOREIGN KEY (role_id) REFERENCES roles(id)
-    ,CONSTRAINT user_id UNIQUE (user_id, role_id)
-
-)
-    ENGINE = InnoDB;
-CREATE INDEX role_id ON user_roles (role_id);
-
-INSERT INTO users(login, password, name) VALUES('admin','admin','admin');
-INSERT INTO users(login, password, name) VALUES('user','user','user');
+INSERT INTO users(login, password, name, isAccountNonExpired, isAccountNonLocked, isCredentialsNonExpired, isEnabled)
+VALUES('admin','admin','admin', true, true, true, true);
+INSERT INTO users(login, password, name, isAccountNonExpired, isAccountNonLocked, isCredentialsNonExpired, isEnabled)
+VALUES('user','user','user', true, true, true, true);
 
 INSERT INTO roles(role) VALUES('ROLE_ADMIN');
 INSERT INTO roles(role) VALUES('ROLE_USER');
 
-INSERT INTO user_roles(user_id, role_id) VALUES(1, 1);
-INSERT INTO user_roles(user_id, role_id) VALUES(1, 2);
-INSERT INTO user_roles(user_id, role_id) VALUES(2, 2);
+INSERT INTO users_roles(user_id, role_id) VALUES(1, 1);
+INSERT INTO users_roles(user_id, role_id) VALUES(1, 2);
+INSERT INTO users_roles(user_id, role_id) VALUES(2, 2);
 
 SELECT * FROM users;
 SELECT * FROM roles;
-SELECT * FROM user_roles;
-
-# update users set password='$2a$10$3PW580GWHwPsgOJp3bwZ5uTTLVoFwruBD0KPjbJnhycCoukGZN/na'
-# where login='admin';
+SELECT * FROM users_roles;
