@@ -1,12 +1,14 @@
 package app.model;
 
+import org.springframework.security.core.GrantedAuthority;
+
 import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
 
 @Entity
 @Table(name = "roles")
-public class Role {
+public class Role implements GrantedAuthority {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -15,9 +17,7 @@ public class Role {
     @Column(length = 50)
     private String role;
 
-    @ManyToMany(fetch = FetchType.EAGER, cascade = {CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REMOVE})
-    @JoinTable(name = "user_roles", joinColumns = @JoinColumn(name = "role_id"),
-                                    inverseJoinColumns = @JoinColumn(name = "user_id"))
+    @ManyToMany(targetEntity = User.class, mappedBy = "roles")
     private Set<Role> users = new HashSet<>();
 
     public Role() {}
@@ -48,5 +48,10 @@ public class Role {
 
     public void setUsers(Set<Role> users) {
         this.users = users;
+    }
+
+    @Override
+    public String getAuthority() {
+        return getRole();
     }
 }

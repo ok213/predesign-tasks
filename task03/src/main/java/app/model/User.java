@@ -21,7 +21,7 @@ public class User {
     private String name;
 
     @ManyToMany(fetch = FetchType.EAGER, cascade = {CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REMOVE})
-    @JoinTable(name = "user_roles", joinColumns = @JoinColumn(name = "user_id"),
+    @JoinTable(name = "users_roles", joinColumns = @JoinColumn(name = "user_id"),
                                     inverseJoinColumns = @JoinColumn(name = "role_id"))
     private Set<Role> roles = new HashSet<>();
 
@@ -38,19 +38,6 @@ public class User {
         this.login = login;
         this.password = password;
         this.name = name;
-    }
-
-
-    public UserDetails getUserDetails() {
-        org.springframework.security.core.userdetails.User.UserBuilder builder =
-                org.springframework.security.core.userdetails.User.withUsername(login);
-        builder.disabled(false);
-        builder.password(password);
-
-        String[] authorities = roles.stream().map(a -> a.getRole()).toArray(String[]::new);
-        builder.authorities(authorities);
-
-        return builder.build();
     }
 
     public Long getId() {
