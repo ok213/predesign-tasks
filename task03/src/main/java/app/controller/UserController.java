@@ -2,10 +2,7 @@ package app.controller;
 
 import app.model.User;
 import app.service.UserService;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -13,8 +10,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
-import java.net.MalformedURLException;
-import java.net.URL;
 import java.util.List;
 
 @Controller
@@ -27,6 +22,13 @@ public class UserController {
     }
 
     @GetMapping("/")
+    public ModelAndView indexPage() {
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName("redirect:/login");
+        return modelAndView;
+    }
+
+    @GetMapping("/admin")
     public ModelAndView allUsers() {
         List<User> users = userService.getAll();
         ModelAndView modelAndView = new ModelAndView();
@@ -49,22 +51,22 @@ public class UserController {
         return modelAndView;
     }
 
-    @GetMapping("/create")
+    @GetMapping("/admin/create")
     public ModelAndView addPage() {
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("update");
         return modelAndView;
     }
 
-    @PostMapping("/create")
+    @PostMapping("/admin/create")
     public ModelAndView addUser(@ModelAttribute("user") User user) {
         ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("redirect:/");
+        modelAndView.setViewName("redirect:/admin");
         userService.create(user);
         return modelAndView;
     }
 
-    @GetMapping("/update/{id}")
+    @GetMapping("/admin/update/{id}")
     public ModelAndView updatePage(@PathVariable("id") long id) {
         User user = userService.getById(id);
         ModelAndView modelAndView = new ModelAndView();
@@ -73,18 +75,18 @@ public class UserController {
         return modelAndView;
     }
 
-    @PostMapping("/update")
+    @PostMapping("/admin/update")
     public ModelAndView updateUser(@ModelAttribute("user") User user) {
         ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("redirect:/");
+        modelAndView.setViewName("redirect:/admin");
         userService.update(user);
         return modelAndView;
     }
 
-    @GetMapping("/delete/{id}")
+    @GetMapping("/admin/delete/{id}")
     public ModelAndView deleteUser(@PathVariable("id") long id) {
         ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("redirect:/");
+        modelAndView.setViewName("redirect:/admin");
         userService.delete(id);
         return modelAndView;
     }

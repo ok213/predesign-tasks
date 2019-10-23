@@ -18,7 +18,7 @@
 <h2>TASK 03</h2>
 <hr><br>
 <p>
-    <a href="<c:url value="/create"/>" style="margin-left: 30px;">CREATE USER</a>
+    <a href="<c:url value="/admin/create"/>" style="margin-left: 30px;">CREATE USER</a>
 </p>
 <table style="width: 100%; border-spacing: 0; border: 1px solid grey;">
     <tr>
@@ -43,8 +43,8 @@
             <td style="text-align: center;">
                 <c:if test = "${user.login != 'admin'}">
                     <c:if test="${user.login != 'user'}">
-                        <a href="/update/${user.id}">edit</a>&nbsp;&nbsp;
-                        <a href="/delete/${user.id}">delete</a>
+                        <a href="/admin/update/${user.id}">edit</a>&nbsp;&nbsp;
+                        <a href="/admin/delete/${user.id}">delete</a>
                     </c:if>
                 </c:if>
             </td>

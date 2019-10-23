@@ -45,9 +45,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
         http.authorizeRequests()
                 .antMatchers("/login").anonymous()
-                .antMatchers("/", "/create**", "/update**", "/delete**").hasRole("ADMIN")
-                .antMatchers("/user**").hasRole("USER")
-                .antMatchers("/**").authenticated()
+                .antMatchers("/user**").access("hasRole('ROLE_USER')")
+                .antMatchers("/admin**").access("hasRole('ROLE_ADMIN')")
                 .and()
                     // указываем страницу с формой логина
                     .formLogin()

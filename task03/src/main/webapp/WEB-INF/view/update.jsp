@@ -51,10 +51,10 @@
 <h2>TASK 03</h2>
 <hr><br>
 <c:if test="${empty userId}">
-    <c:url value="/create" var="link"/>
+    <c:url value="/admin/create" var="link"/>
 </c:if>
 <c:if test="${!empty userId}">
-    <c:url value="/update" var="link"/>
+    <c:url value="/admin/update" var="link"/>
 </c:if>
 <form action="${link}" method="POST">
     <fieldset>
