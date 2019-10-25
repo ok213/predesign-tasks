@@ -2,7 +2,6 @@ package app.service;
 
 import app.model.User;
 import app.repository.UserRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -10,8 +9,11 @@ import org.springframework.transaction.annotation.Transactional;
 @Transactional
 public class UserServiceImpl implements UserService {
 
-    @Autowired
-    private UserRepository userRepository;
+    private final UserRepository userRepository;
+
+    public UserServiceImpl(UserRepository userRepository) {
+        this.userRepository = userRepository;
+    }
 
     @Override
     public Iterable<User> getAllUsers() {
@@ -20,7 +22,13 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public void createUser(User user) {
-        userRepository.save(user);
+        if (userRepository.findUserByLogin(user.getLogin()) == null) {
+            user.setAccountNonExpired(true);
+            user.setAccountNonLocked(true);
+            user.setCredentialsNonExpired(true);
+            user.setEnabled(true);
+            userRepository.save(user);
+        }
     }
 
     @Override
