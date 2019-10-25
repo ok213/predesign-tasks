@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org/">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Task03</title>
+</head>
+<body style="font-family: 'Palatino Linotype', serif; max-width: 60%; padding-left: 30px;">
+<h2>TASK 04</h2>
+<p th:text="${'Logged in:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;' + #request.getUserPrincipal().getName()}" style="font-style: oblique"></p>
+<hr><br>
+User page!
+
+<br><br>
+<form th:action="@{/logout}" method="post">
+    <input type="submit" value="Sign Out"/>
+    <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+</form>
+</body>
+</html>
+
