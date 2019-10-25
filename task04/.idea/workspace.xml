@@ -2,9 +2,19 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="18b19d95-3317-4d4b-9045-6d2ea4559985" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/NOTES.TXT" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/app/dao/UserDAO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/app/dao/UserDAOImpl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/app/config/MvcConfig.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/app/controller/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/app/controller/UserController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/app/handler/CustomAccessDeniedHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/app/security/CustomAccessDeniedHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/app/handler/CustomAuthenticationFailureHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/app/security/CustomAuthenticationFailureHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/app/handler/CustomAuthenticationSuccessHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/app/security/CustomAuthenticationSuccessHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/app/repository/UserRepository.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/app/security/UserDetailsServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/app/security/UserDetailsServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/app/security/WebSecurityConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/app/security/WebSecurityConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/app/service/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/app/service/UserService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/app/service/UserServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/app/service/UserServiceImpl.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -75,7 +85,7 @@
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/main/java/app/dao" />
     <property name="project.structure.last.edited" value="Facets" />
     <property name="project.structure.proportion" value="0.0" />
     <property name="project.structure.side.proportion" value="0.34712642" />
@@ -91,6 +101,7 @@
       <recent name="app.model" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/main/java/app/dao" />
       <recent name="C:\projects\java\predesign-tasks\task04\src\main\java\app\handler" />
       <recent name="C:\projects\java\predesign-tasks\task04\src\main\resources\templates" />
     </key>
@@ -160,6 +171,7 @@
       <workItem from="1571900240852" duration="27388000" />
       <workItem from="1571982618480" duration="4613000" />
       <workItem from="1571990192743" duration="9531000" />
+      <workItem from="1572015354138" duration="991000" />
     </task>
     <task id="LOCAL-00001" summary="begin task04">
       <created>1571927947349</created>
@@ -175,7 +187,14 @@
       <option name="project" value="LOCAL" />
       <updated>1571986733873</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="task04 revision 02">
+      <created>1572015462020</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1572015462020</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -198,7 +217,8 @@
     <MESSAGE value="begin project" />
     <MESSAGE value="begin task04" />
     <MESSAGE value="task 04 release 01" />
-    <option name="LAST_COMMIT_MESSAGE" value="task 04 release 01" />
+    <MESSAGE value="task04 revision 02" />
+    <option name="LAST_COMMIT_MESSAGE" value="task04 revision 02" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/task04$Application.ic" NAME="Application Coverage Results" MODIFIED="1571907754766" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
