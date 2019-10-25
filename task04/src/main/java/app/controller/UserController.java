@@ -53,7 +53,6 @@ public class UserController {
         return "update";
     }
 
-
     @PostMapping("/admin/update")
     public String updateUser(@ModelAttribute("user") User user, Model model) {
         userService.updateUser(user);
