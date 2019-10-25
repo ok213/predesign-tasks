@@ -22,19 +22,10 @@ public class UserController {
         return "redirect:/login";
     }
 
-    @GetMapping("/login")
-    public String loginPage() {
-        return "login";
-    }
-
-    @GetMapping("/error")
-    public String errorPage() {
-        return "error";
-    }
-
     @GetMapping("/admin")
     public String listUsers(Model model) {
-        model.addAttribute("allUsers", userService.getAll());
+        Iterable<User> allUsers = userService.getAllUsers();
+        model.addAttribute("allUsers", allUsers);
         return "read";
     }
 
@@ -51,26 +42,26 @@ public class UserController {
 
     @PostMapping("/admin/create")
     public String createUser(@ModelAttribute("user") User user, Model model) {
-        userService.create(user);
+        userService.createUser(user);
         return "redirect:/admin";
     }
 
     @GetMapping("/admin/update/{id}")
     public String updatePage(@PathVariable("id") Long id, Model model) {
         model.addAttribute("actionPath", "update");
-        model.addAttribute("user", userService.getById(id));
+        model.addAttribute("user", userService.getUserById(id));
         return "update";
     }
 
     @PostMapping("/admin/update")
     public String updateUser(@ModelAttribute("user") User user, Model model) {
-        userService.update(user);
+        userService.updateUser(user);
         return "redirect:/admin";
     }
 
     @GetMapping("/admin/delete/{id}")
     public String deleteUser(@PathVariable("id") Long id, Model model) {
-        userService.delete(id);
+        userService.deleteUserById(id);
         return "redirect:/admin";
     }
 

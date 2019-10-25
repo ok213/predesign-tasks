@@ -1,55 +1,48 @@
 package app.service;
 
-import app.dao.UserDAO;
 import app.model.User;
+import app.repository.UserRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
-import java.util.List;
 
 @Service
 @Transactional
 public class UserServiceImpl implements UserService {
 
-    private final UserDAO userDAO;
+    private final UserRepository userRepository;
 
-    public UserServiceImpl(UserDAO userDAO) {
-        this.userDAO = userDAO;
+    public UserServiceImpl(UserRepository userRepository) {
+        this.userRepository = userRepository;
     }
 
     @Override
-    public void create(User user) {
-        if (!validate(user)) {
-            userDAO.create(user);
+    public Iterable<User> getAllUsers() {
+        return userRepository.findAll();
+    }
+
+    @Override
+    public void createUser(User user) {
+        if (userRepository.findUserByLogin(user.getLogin()) == null) {
+            user.setAccountNonExpired(true);
+            user.setAccountNonLocked(true);
+            user.setCredentialsNonExpired(true);
+            user.setEnabled(true);
+            userRepository.save(user);
         }
     }
 
     @Override
-    public List<User> getAll() {
-        return userDAO.readAll();
+    public void updateUser(User user) {
+        userRepository.save(user);
     }
 
     @Override
-    public void update(User user) {
-        if (getById(user.getId()) != null) {
-            userDAO.update(user);
-        }
+    public void deleteUserById(Long id) {
+        userRepository.deleteById(id);
     }
 
     @Override
-    public void delete(long id) {
-        userDAO.delete(id);
+    public User getUserById(Long id) {
+        return userRepository.findById(id).orElse(null);
     }
-
-    @Override
-    public User getById(long id) {
-        return userDAO.getById(id);
-    }
-
-    @Override
-    public boolean validate(User user) {
-        User userFromBase = userDAO.getByLoginAndPassword(user.getLogin(), user.getPassword());
-        return user.equals(userFromBase);
-    }
-
 }
