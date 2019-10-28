@@ -1,11 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="18b19d95-3317-4d4b-9045-6d2ea4559985" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/NOTES.TXT" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/app/controller/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/app/controller/UserController.java" afterDir="false" />
-    </list>
+    <list default="true" id="18b19d95-3317-4d4b-9045-6d2ea4559985" name="Default Changelist" comment="task 04 release 01" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -66,6 +62,7 @@
     <ConfirmationsSetting value="2" id="Add" />
   </component>
   <component name="PropertiesComponent">
+    <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
     <property name="DatabaseDriversLRU" value="mysql" />
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
     <property name="RequestMappingsPanelOrder0" value="0" />
@@ -159,7 +156,7 @@
       <updated>1571900239615</updated>
       <workItem from="1571900240852" duration="27388000" />
       <workItem from="1571982618480" duration="4613000" />
-      <workItem from="1571990192743" duration="9531000" />
+      <workItem from="1571990192743" duration="9570000" />
     </task>
     <task id="LOCAL-00001" summary="begin task04">
       <created>1571927947349</created>
@@ -175,7 +172,14 @@
       <option name="project" value="LOCAL" />
       <updated>1571986733873</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="task 04 release 01">
+      <created>1572007902048</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1572007902048</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
