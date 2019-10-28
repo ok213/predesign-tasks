@@ -1,4 +1,4 @@
-package app.handler;
+package app.security;
 
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.authority.AuthorityUtils;

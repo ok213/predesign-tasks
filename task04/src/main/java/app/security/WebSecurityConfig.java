@@ -1,8 +1,5 @@
 package app.security;
 
-import app.handler.CustomAccessDeniedHandler;
-import app.handler.CustomAuthenticationFailureHandler;
-import app.handler.CustomAuthenticationSuccessHandler;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
