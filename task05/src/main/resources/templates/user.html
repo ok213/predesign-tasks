@@ -1,0 +1,181 @@
+<!doctype html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org/">
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="css/mystyle.css">
+    <title>Predesign task</title>
+</head>
+
+<body>
+    <nav class="navbar navbar-dark fixed-top bg-dark p-0">
+        <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="#">Project name</a>
+        <a class="nav-link text-light" href="/logout">Logout</a>
+    </nav>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-2 bg-light sidebar">
+                <div class="sidebar-sticky">
+                    <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+                        <a class="nav-link active" id="v-pills-admin-tab" data-toggle="pill" href="#v-pills-admin"
+                            role="tab" aria-controls="v-pills-admin" aria-selected="true">Admin</a>
+                        <a class="nav-link" id="v-pills-user-tab" data-toggle="pill" href="#v-pills-user" role="tab"
+                            aria-controls="v-pills-user" aria-selected="false">User</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col offset-2 pt-5">
+                <div class="tab-content" id="v-pills-tabContent">
+                    <div class="tab-pane fade show active" id="v-pills-admin" role="tabpanel"
+                        aria-labelledby="v-pills-admin-tab">
+                        <div
+                            class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-2 pb-2 mb-3">
+                            <h1 class="h2">Admin panel</h1>
+                        </div>
+                        <nav>
+                            <div class="nav nav-tabs" id="nav-adminPanel" role="tablist">
+                                <a class="nav-item nav-link active" id="nav-allUsers-tab" data-toggle="tab"
+                                    href="#allUsers" role="tab" aria-controls="allUsers" aria-selected="true">Users
+                                    table</a>
+                                <a class="nav-item nav-link" id="nav-newUser-tab" data-toggle="tab" href="#newUser"
+                                    role="tab" aria-controls="newUser" aria-selected="false">New User</a>
+                            </div>
+                        </nav>
+                        <div class="tab-content" id="nav-adminPanelContent">
+                            <div class="tab-pane fade show active" id="allUsers" role="tabpanel"
+                                aria-labelledby="nav-allUsers-tab">
+                                <div class="card bg-light">
+                                    <div class="card-header font-weight-bold">All users</div>
+                                    <div class="card-body">
+                                        <table class="table table-striped">
+                                            <thead>
+                                                <tr>
+                                                    <th scope="col">ID</th>
+                                                    <th scope="col">Role</th>
+                                                    <th scope="col">Login</th>
+                                                    <th scope="col">Password</th>
+                                                    <th scope="col">Email</th>
+                                                    <th scope="col">Edit</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr th:each="user : ${allUsers}">
+                                                    <th th:text="${user.getId()}"></th>
+                                                    <td th:text="${user.printRoles()}"></td>
+                                                    <td th:text="${user.getLogin()}"></td>
+                                                    <td th:text="${user.getPassword()}"></td>
+                                                    <td th:text="${user.getEmail()}"></td>
+                                                    <td>
+                                                        <button type="button" class="btn btn-info btn-sm"
+                                                            data-toggle="modal" data-target="#editUserModal" th:value="${user.getId()}">
+                                                            Edit
+                                                        </button>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="tab-pane fade" id="newUser" role="tabpanel" aria-labelledby="nav-newUser-tab">
+                                <div class="card bg-light">
+                                    <div class="card-header font-weight-bold">Add new user</div>
+                                    <div class="card-body d-flex justify-content-center">
+                                        <form action="/admin/create" method="POST" class="col-md-4 text-center" id="userCreate">
+                                            <div class="form-group">
+                                                <label class="font-weight-bold" for="inputEmail">Email</label>
+                                                <input type="email" class="form-control" id="inputEmail"
+                                                    aria-describedby="emailHelp" placeholder="Enter email" name="email">
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="font-weight-bold" for="inputLogin">Login</label>
+                                                <input type="text" class="form-control" id="inputLogin"
+                                                    placeholder="Login" name="login">
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="font-weight-bold" for="inputPassword">Password</label>
+                                                <input type="password" class="form-control" id="inputPassword"
+                                                    placeholder="Password" name="password">
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="font-weight-bold" for="inputRole">Role</label>
+                                                <select class="form-control" id="inputRole" name="roles">
+                                                    <option th:each="role : ${allRoles}" th:text="${role.getRole()}"></option>
+                                                </select>
+                                            </div>
+                                            <button type="submit" form="userCreate" class="btn btn-success" >Add new user</button>
+                                            <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tab-pane fade" id="v-pills-user" role="tabpanel" aria-labelledby="v-pills-user-tab">
+                        <div
+                            class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-2 pb-2 mb-3">
+                            <h1 class="h2">User page</h1>
+                        </div>
+                        <p>Hello admin!</p>
+
+                    </div>
+                </div>
+            </div>
+            <div class="modal fade" id="editUserModal" tabindex="-1" role="dialog" aria-labelledby="editUserModalTitle"
+                aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="editUserModalTitle">Edit user</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="container">
+                                <div class="row justify-content-center">
+                                    <form action="/admin/update" method="POST" id="formUpdate" class="text-center">
+                                        <div class="form-group">
+                                            <label class="font-weight-bold" for="fuInputId">ID</label>
+                                            <input type="text" class="form-control" id="fuInputId" name="fuId" disabled>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="font-weight-bold" for="fuInputEmail">Email</label>
+                                            <input type="email" class="form-control" id="fuInputEmail"
+                                                aria-describedby="emailHelp" name="fuEmail">
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="font-weight-bold" for="fuInputLogin">Login</label>
+                                            <input type="text" class="form-control" id="fuInputLogin" name="fuLogin">
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="font-weight-bold" for="fuInputPassword">Password</label>
+                                            <input type="password" class="form-control" id="fuInputPassword"
+                                                name="fuPassword">
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="font-weight-bold" for="fuInputRole">Role</label>
+                                            <input type="text" class="form-control" id="fuInputRole" name="fuRole">
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            <button type="submit" form="formUpdate" class="btn btn-primary">Edit user</button>
+                            <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="js/jquery-3.4.1.min.js"></script>
+    <script src="js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>
