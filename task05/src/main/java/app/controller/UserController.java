@@ -1,18 +1,18 @@
 package app.controller;
 
+import app.model.Role;
 import app.model.User;
 import app.service.RoleService;
 import app.service.UserService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 
 @Controller
@@ -54,56 +54,19 @@ public class UserController {
         return "redirect:/admin";
     }
 
-//    @GetMapping("/admin/update/{id}")
-//    public String updatePage(@PathVariable("id") Long id, Model model) {
-//        model.addAttribute("actionPath", "update");
-//        model.addAttribute("user", userService.getById(id));
-//        return "admin";
-//    }
-
-//    @GetMapping("/admin/update/{id}")
-//    public String updatePage(@PathVariable("id") Long id) {
-////        User user = userService.getById(id);
-////
-////        Map<String, String> map = new HashMap<>();
-////        map.put("id", user.getId().toString());
-////        map.put("login", user.getLogin());
-////        map.put("password", user.getPassword());
-////        map.put("email", user.getEmail());
-////        map.put("roles", user.printRoles());
-////        return map;
-//        return new String("{'aa':'bb'}");
-//    }
-
+    @ResponseBody
     @GetMapping("/admin/update/{id}")
-    public ModelAndView updateUser() {
-        ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("user");
-        return modelAndView;
+    public Map<String, String> updatePage(@PathVariable("id") Long id) {
+        User user = userService.getById(id);
+        String roles = roleService.getAll().stream().map(Object::toString).collect(Collectors.joining(","));
+        Map<String, String> response = new HashMap<>();
+        response.put("id", user.getId().toString());
+        response.put("login", user.getLogin());
+        response.put("password", user.getPassword());
+        response.put("email", user.getEmail());
+        response.put("roles", roles);
+        return response;
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    @GetMapping("/user")
-    public String homePageUser() {
-        return "admin";
-    }
-
-
-
-
-
 
     @PostMapping("/admin/update")
     public String updateUser(@ModelAttribute("user") User user, Model model) {
@@ -115,6 +78,11 @@ public class UserController {
     public String deleteUser(@PathVariable("id") Long id, Model model) {
         userService.delete(id);
         return "redirect:/admin";
+    }
+
+    @GetMapping("/user")
+    public String homePageUser() {
+        return "user";
     }
 
 }
