@@ -1,7 +1,40 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="18b19d95-3317-4d4b-9045-6d2ea4559985" name="Default Changelist" comment="task 04 release 01" />
+    <list default="true" id="18b19d95-3317-4d4b-9045-6d2ea4559985" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/../task05/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../task05/db.sql" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../task05/src/main/java/app/Application.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../task05/src/main/java/app/controller/UserController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../task05/src/main/java/app/dao/RoleDAO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../task05/src/main/java/app/dao/RoleDAOImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../task05/src/main/java/app/dao/UserDAO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../task05/src/main/java/app/dao/UserDAOImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../task05/src/main/java/app/model/Role.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../task05/src/main/java/app/model/User.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../task05/src/main/java/app/security/CustomAccessDeniedHandler.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../task05/src/main/java/app/security/CustomAuthenticationFailureHandler.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../task05/src/main/java/app/security/CustomAuthenticationSuccessHandler.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../task05/src/main/java/app/security/UserDetailsServiceImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../task05/src/main/java/app/security/WebSecurityConfig.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../task05/src/main/java/app/service/RoleService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../task05/src/main/java/app/service/RoleServiceImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../task05/src/main/java/app/service/UserService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../task05/src/main/java/app/service/UserServiceImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../task05/src/main/resources/application.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../task05/src/main/resources/static/css/bootstrap.min.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../task05/src/main/resources/static/css/mystyle.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../task05/src/main/resources/static/css/signin.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../task05/src/main/resources/static/js/bootstrap.bundle.min.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../task05/src/main/resources/static/js/jquery-3.4.1.slim.min.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../task05/src/main/resources/templates/admin.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../task05/src/main/resources/templates/error.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../task05/src/main/resources/templates/login.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../task05/src/main/resources/templates/user.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../task05/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../task05/.idea/compiler.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../task05/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../task05/pom.xml" afterDir="false" />
+    </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -28,12 +61,6 @@
         <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
         <item name="task04@localhost" type="feb32156:DbDataSourceImpl" />
         <item name="schemas" type="d4e8921:DatabaseStructure$FamilyGroup" />
-      </path>
-      <path>
-        <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
-        <item name="task04@localhost" type="feb32156:DbDataSourceImpl" />
-        <item name="schemas" type="d4e8921:DatabaseStructure$FamilyGroup" />
-        <item name="task04: schema" type="76f4a085:MysqlImplModel$Schema" />
       </path>
     </expand>
     <select />
@@ -157,6 +184,10 @@
       <workItem from="1571900240852" duration="27388000" />
       <workItem from="1571982618480" duration="4613000" />
       <workItem from="1571990192743" duration="9570000" />
+      <workItem from="1572262146894" duration="671000" />
+      <workItem from="1572263124694" duration="23000" />
+      <workItem from="1572263862205" duration="38000" />
+      <workItem from="1572266666210" duration="1525000" />
     </task>
     <task id="LOCAL-00001" summary="begin task04">
       <created>1571927947349</created>
@@ -179,7 +210,14 @@
       <option name="project" value="LOCAL" />
       <updated>1572007902048</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="task 04 finish">
+      <created>1572262338921</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1572262338921</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -199,10 +237,12 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
     <MESSAGE value="begin project" />
     <MESSAGE value="begin task04" />
     <MESSAGE value="task 04 release 01" />
-    <option name="LAST_COMMIT_MESSAGE" value="task 04 release 01" />
+    <MESSAGE value="task 04 finish" />
+    <option name="LAST_COMMIT_MESSAGE" value="task 04 finish" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/task04$Application.ic" NAME="Application Coverage Results" MODIFIED="1571907754766" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
