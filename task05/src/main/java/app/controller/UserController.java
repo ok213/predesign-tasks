@@ -45,7 +45,8 @@ public class UserController {
     public String listUsers(Model model) {
         model.addAttribute("allUsers", userService.getAll());
         model.addAttribute("allRoles", roleService.getAll());
-        return "admin";
+        model.addAttribute("isUser", false);
+        return "index";
     }
 
     @PostMapping("/admin/create")
@@ -81,8 +82,9 @@ public class UserController {
     }
 
     @GetMapping("/user")
-    public String homePageUser() {
-        return "user";
+    public String homePageUser(Model model) {
+        model.addAttribute("isUser", true);
+        return "index";
     }
 
 }
