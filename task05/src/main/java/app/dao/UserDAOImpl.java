@@ -37,6 +37,7 @@ public class UserDAOImpl implements UserDAO {
     public void delete(long id) {
         User userFromDB = entityManager.find(User.class, id);
         if (userFromDB != null) {
+            userFromDB.setRoles(null);
             entityManager.remove(userFromDB);
         }
     }
