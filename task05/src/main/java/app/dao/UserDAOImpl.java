@@ -29,6 +29,7 @@ public class UserDAOImpl implements UserDAO {
         userFromDB.setLogin(user.getLogin());
         userFromDB.setPassword(user.getPassword());
         userFromDB.setEmail(user.getEmail());
+        userFromDB.setRoles(user.getRoles());
         entityManager.merge(userFromDB);
     }
 
