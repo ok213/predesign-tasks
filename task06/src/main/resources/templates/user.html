@@ -1,0 +1,11 @@
+<html xmlns:th="http://www.thymeleaf.org/" xmlns:sec="http://www.w3.org/1999/xhtml" th:fragment="userPage">
+<div class="tab-content" id="v-pills-tabContent">
+    <div class="tab-pane fade show active" id="v-pills-user" role="tabpanel"
+         aria-labelledby="v-pills-user-tab">
+        <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-2 pb-2 mb-3">
+            <h1 class="h2">User page</h1>
+        </div>
+        <p>Logged user: <span sec:authentication="name">ANONYMOUS</span></p>
+    </div>
+</div>
+</html>
