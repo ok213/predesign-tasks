@@ -1,7 +1,9 @@
-package app.controller;
+package app.controller.api;
 
+import app.model.Role;
 import app.model.User;
-import app.service.UserService;
+import app.service.api.RoleServiceApi;
+import app.service.api.UserServiceApi;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -12,20 +14,22 @@ import java.util.List;
 @RequestMapping("/api/v1")
 public class UserRestController {
 
-    private final UserService userService;
+    private final UserServiceApi userServiceApi;
+    private final RoleServiceApi roleServiceApi;
 
-    public UserRestController(UserService userService) {
-        this.userService = userService;
+    public UserRestController(UserServiceApi userServiceApi, RoleServiceApi roleServiceApi) {
+        this.userServiceApi = userServiceApi;
+        this.roleServiceApi = roleServiceApi;
     }
 
     @GetMapping("/user")
     public ResponseEntity<List<User>> getAllUsers() {
-        return ResponseEntity.ok(userService.getAll());
+        return ResponseEntity.ok(userServiceApi.getAllUsers());
     }
 
     @GetMapping("/user/{id}")
     public ResponseEntity<User> getUserById(@PathVariable Long id) {
-        User user = userService.getById(id);
+        User user = userServiceApi.getUserById(id);
         if (user == null) {
             ResponseEntity.badRequest().build();
         }
@@ -34,26 +38,31 @@ public class UserRestController {
 
     @PostMapping("/user")
     public ResponseEntity createUser(@Valid @RequestBody User user) {
-        userService.create(user);
+        userServiceApi.createUser(user);
         return ResponseEntity.ok().build();
     }
 
-    @PutMapping("/user/{id}")
-    public ResponseEntity<User> updateUser(@PathVariable Long id, @Valid @RequestBody User user) {
-        if (userService.getById(id) == null) {
+    @PutMapping("/user")
+    public ResponseEntity<User> updateUser(@Valid @RequestBody User user) {
+        if (userServiceApi.getUserById(user.getId()) == null) {
             ResponseEntity.badRequest().build();
         }
-        userService.update(user);
+        userServiceApi.updateUser(user);
         return ResponseEntity.ok().build();
     }
 
     @DeleteMapping("/user/{id}")
     public ResponseEntity delete(@PathVariable Long id) {
-        if (userService.getById(id) == null) {
+        if (userServiceApi.getUserById(id) == null) {
             ResponseEntity.badRequest().build();
         }
-        userService.delete(id);
+        userServiceApi.deleteUserById(id);
         return ResponseEntity.ok().build();
+    }
+
+    @GetMapping("/role")
+    public ResponseEntity<List<Role>> getAllRoles() {
+        return ResponseEntity.ok(roleServiceApi.getAllRoles());
     }
 
 }

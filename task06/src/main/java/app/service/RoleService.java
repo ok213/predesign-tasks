@@ -8,6 +8,6 @@ public interface RoleService {
 
     void create(Role role);
     List<Role> getAll();
-    void delete(long id);
+    void delete(Long id);
 
 }

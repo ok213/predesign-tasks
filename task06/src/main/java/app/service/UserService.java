@@ -9,8 +9,8 @@ public interface UserService {
     void create(User user);
     List<User> getAll();
     void update(User user);
-    void delete(long id);
+    void delete(Long id);
 
-    User getById(long id);
+    User getById(Long id);
     boolean validate(User user);
 }

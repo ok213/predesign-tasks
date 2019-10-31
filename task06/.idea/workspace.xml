@@ -1,46 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="5cc622ed-6c31-401b-8d5b-d6ff3f9d3a09" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/$PRODUCT_WORKSPACE_FILE$" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/README.MD" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/db.sql" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/app/Application.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/app/controller/UserController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/app/controller/UserRestController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/app/dao/RoleDAO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/app/dao/RoleDAOImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/app/dao/UserDAO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/app/dao/UserDAOImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/app/model/Role.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/app/model/User.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/app/security/CustomAccessDeniedHandler.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/app/security/CustomAuthenticationFailureHandler.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/app/security/CustomAuthenticationSuccessHandler.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/app/security/RestSecurityConfig.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/app/security/UserDetailsServiceImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/app/security/WebSecurityConfig.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/app/service/RoleService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/app/service/RoleServiceImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/app/service/UserService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/app/service/UserServiceImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/css/bootstrap.min.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/css/mystyle.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/css/signin.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/js/bootstrap.bundle.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/js/jquery-3.4.1.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/js/myscript.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/templates/admin.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/templates/error.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/templates/index.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/templates/login.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/templates/user.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/task06.iml" afterDir="false" />
+    <list default="true" id="5cc622ed-6c31-401b-8d5b-d6ff3f9d3a09" name="Default Changelist" comment="task06 revision 02">
+      <change afterPath="$PROJECT_DIR$/src/main/java/app/repository/RoleRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/app/repository/UserRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/app/security/api/RestAuthenticationEntryPoint.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/app/service/api/RoleServiceApi.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/app/service/api/RoleServiceApiImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/app/service/api/UserServiceApi.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/app/service/api/UserServiceApiImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/app/controller/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/app/controller/UserController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/app/controller/UserRestController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/app/controller/api/UserRestController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/app/model/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/app/model/User.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/app/security/RestSecurityConfig.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/app/security/WebSecurityConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/app/security/WebSecurityConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/app/service/RoleService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/app/service/RoleService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/app/service/RoleServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/app/service/RoleServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/app/service/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/app/service/UserService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/app/service/UserServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/app/service/UserServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/static/js/myscript.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/js/myscript.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/admin.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/admin.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/login.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/login.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/task06.iml" beforeDir="false" afterPath="$PROJECT_DIR$/task06.iml" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -81,6 +66,7 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
+        <option value="Interface" />
         <option value="Class" />
       </list>
     </option>
@@ -107,14 +93,19 @@
     <property name="RequestMappingsPanelWidth1" value="75" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../../springsecuriy-example-master" />
-    <property name="settings.editor.selected.configurable" value="preferences.general" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/main/java/app/security" />
+    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
   </component>
   <component name="RecentsManager">
+    <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
+      <recent name="app.controller.api" />
+      <recent name="app.security.api" />
+    </key>
     <key name="CopyClassDialog.RECENTS_KEY">
       <recent name="app.security" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\projects\java\predesign-tasks\task06\src\main\java\app\security" />
       <recent name="C:\projects\java\predesign-tasks\task06\src\main\java\app\controller" />
       <recent name="C:\projects\java\predesign-tasks\task06\src\main\java\app\service" />
       <recent name="C:\projects\java\predesign-tasks\task06\src\main\java\app\repository" />
@@ -172,8 +163,17 @@
       <option name="presentableId" value="Default" />
       <updated>1572423226422</updated>
       <workItem from="1572423227642" duration="88000" />
-      <workItem from="1572423318325" duration="19404000" />
+      <workItem from="1572423318325" duration="43478000" />
+      <workItem from="1572527086977" duration="3585000" />
     </task>
+    <task id="LOCAL-00001" summary="task06 revision 01">
+      <created>1572446878361</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1572446878361</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -191,5 +191,10 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="task06 revision 01" />
+    <MESSAGE value="task06 revision 02" />
+    <option name="LAST_COMMIT_MESSAGE" value="task06 revision 02" />
   </component>
 </project>

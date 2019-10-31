@@ -9,17 +9,19 @@ $(document).ready(function() {
             success: function(data) {
                 // console.log(data);
                 let form = $('#formUpdate');
-                $('form #fuInputId').val(data.id);
-                $('form #fuInputEmail').val(data.email);
-                $('form #fuInputLogin').val(data.login);
-                $('form #fuInputPassword').val(data.password);
+                let user = data[0];
+                $('form #fuInputId').val(user.id);
+                $('form #fuInputEmail').val(user.email);
+                $('form #fuInputLogin').val(user.login);
+                $('form #fuInputPassword').val(user.password);
 
-                let arr = data.roles.split(',');
                 let sel = $('form #fuInputRole');
+                let roles = data[1];
                 sel.empty();
-                sel.append('<option selected>Choose a role</option>');
-                $.each(arr, function(index, value){
-                    sel.append('<option value="' + value + '">' + value + '</option>');
+                $.each(roles, function(index, value){
+                    // console.log("id: " + value.id + "  role: " + value.role);
+                    let selected = value.role == 'ROLE_USER'? 'selected' : "";
+                    sel.append(`<option ${selected} value="${value.id}">${value.role}</option>`);
                 });
             },
             error: function(er) {

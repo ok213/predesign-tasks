@@ -4,11 +4,14 @@ import app.model.Role;
 import app.model.User;
 import app.service.RoleService;
 import app.service.UserService;
+import com.google.gson.Gson;
+import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -50,33 +53,28 @@ public class UserController {
     }
 
     @PostMapping("/admin/create")
-    public String createUser(@ModelAttribute("user") User user, Model model) {
+    public String createUser(@ModelAttribute User user) {
         userService.create(user);
         return "redirect:/admin";
     }
 
     @ResponseBody
     @GetMapping("/admin/update/{id}")
-    public Map<String, String> updatePage(@PathVariable("id") Long id) {
-        User user = userService.getById(id);
-        String roles = roleService.getAll().stream().map(Object::toString).collect(Collectors.joining(","));
-        Map<String, String> response = new HashMap<>();
-        response.put("id", user.getId().toString());
-        response.put("login", user.getLogin());
-        response.put("password", user.getPassword());
-        response.put("email", user.getEmail());
-        response.put("roles", roles);
-        return response;
+    public String updatePage(@PathVariable("id") Long id) {
+        List<Object> list = new ArrayList<>();
+        list.add(userService.getById(id));
+        list.add(roleService.getAll());
+        return new Gson().toJson(list);
     }
 
     @PostMapping("/admin/update")
-    public String updateUser(@ModelAttribute("user") User user, Model model) {
+    public String updateUser(@ModelAttribute User user) {
         userService.update(user);
         return "redirect:/admin";
     }
 
     @GetMapping("/admin/delete/{id}")
-    public String deleteUser(@PathVariable("id") Long id, Model model) {
+    public String deleteUser(@PathVariable("id") Long id) {
         userService.delete(id);
         return "redirect:/admin";
     }

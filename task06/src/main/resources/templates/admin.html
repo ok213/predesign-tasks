@@ -72,9 +72,8 @@
                         <div class="form-group">
                             <label class="font-weight-bold" for="inputRole">Role</label>
                             <select class="browser-default custom-select" id="inputRole" name="roles">
-                                <option selected disabled>Choose a role</option>
-                                <option th:each="role : ${allRoles}" th:value="${role.getRole()}"
-                                        th:text="${role.getRole()}"></option>
+                                <option th:each="role : ${allRoles}" th:value="${role.getId()}"
+                                        th:text="${role.getRole()}" th:selected="${role.getRole() == 'ROLE_USER'}"></option>
                             </select>
                         </div>
                         <button type="submit" form="userCreate" class="btn btn-success">Add new user</button>
