@@ -28,17 +28,15 @@
 
         <div class="nav-scroller py-1 mb-4 mb-2">
             <nav class="nav d-flex justify-content-between">
-                <button id="btnLogon" type="button" class="btn btn-link text-dark"
-                    data-target="#createUserModal">
+                <button id="btnMenuCreateUser" type="button" class="btn btn-link text-dark">
                     <span>Create user</span>
                 </button>
                 <button id="btnReadUsers" type="button" class="btn btn-link text-dark">
                     <span>Read users</span>
                 </button>
-                <button id="btnLogon" type="button" class="btn btn-link text-dark" data-toggle="modal"
-                    data-target="#exampleModalCenter">
-                    Logon
-                </button>
+                <a href="" class="btn btn-link text-dark" role="button" aria-pressed="true">
+                    <span></span>
+                </a>
             </nav>
         </div>
 
@@ -64,56 +62,22 @@
             </div><!-- /.row -->
         </main><!-- /.container -->
 
-        <!-- Authentication Modal -->
-        <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog"
-            aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered" role="document">
-                <div class="modal-content">
-                    <div class="modal-header bg-light">
-                        <h5 class="modal-title" id="exampleModalCenterTitle">Enter login and password</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body d-flex justify-content-center">
-                        <div class="card border-light mb-3" style="max-width: 18rem;">
-                            <div class="card-body">
-                                <form id="formLogon" class="form-signin" action="/login" method="POST">
-                                    <div class="form-group">
-                                        <label for="inputEmail" class="sr-only">Login</label>
-                                        <input type="text" id="inputEmail1" class="form-control"
-                                            placeholder="Email address" name="login" required autofocus>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="inputPassword" class="sr-only">Password</label>
-                                        <input type="password" id="inputPassword1" class="form-control"
-                                            placeholder="Password" name="password" required>
-                                    </div>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                        <button type="submit" class="btn btn-primary" form="formLogon">Log on</button>
-                        <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
-                    </div>
-                </div>
-            </div>
-        </div><!-- end Authentication Modal -->
-
-        <!-- Create user Modal -->
+        <!-- Create/update user Modal -->
         <div class="modal fade" id="createUserModal" tabindex="-1" role="dialog" aria-labelledby="createUserModalTitle" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered" role="document">
                 <div class="modal-content">
                     <div class="modal-header bg-light">
-                        <h5 class="modal-title" id="createUserModalTitle">Create new user</h5>
+                        <h5 class="modal-title" id="createUserModalTitle"></h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
                     <div class="modal-body d-flex justify-content-center">
                         <form class="text-center" id="userCreate">
+                            <div class="form-group" id="formGroupId">
+                                <label class="font-weight-bold" for="inputId">ID</label>
+                                <input type="text" class="form-control" id="inputId" name="id" readonly>
+                            </div>
                             <div class="form-group">
                                 <label class="font-weight-bold" for="inputEmail">Email</label>
                                 <input type="text" class="form-control" id="inputEmail" aria-describedby="emailHelp"
@@ -121,30 +85,28 @@
                             </div>
                             <div class="form-group">
                                 <label class="font-weight-bold" for="inputLogin">Login</label>
-                                <input type="text" class="form-control" id="inputLogin" placeholder="Login"
-                                    name="login">
+                                <input type="text" class="form-control" id="inputLogin" placeholder="Login" name="login">
                             </div>
                             <div class="form-group">
                                 <label class="font-weight-bold" for="inputPassword">Password</label>
-                                <input type="text" class="form-control" id="inputPassword" placeholder="Password"
-                                    name="password">
+                                <input type="text" class="form-control" id="inputPassword" placeholder="Password" name="password">
                             </div>
                             <div class="form-group">
                                 <label class="font-weight-bold" for="inputRole">Role</label>
                                 <select class="browser-default custom-select" id="inputRole" name="roles">
                                 </select>
                             </div>
-                            <button type="submit" form="userCreate" class="btn btn-success" id="btnCreateUser">Add new user</button>
+                            <button type="submit" form="userCreate" class="btn btn-success" id="btnSendUser"></button>
                             <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
                         </form>
                     </div>
                 </div>
             </div>
-            </div><!-- end Create user Modal -->
-
-            <script src="js/jquery-3.4.1.min.js" type="text/javascript"></script>
-            <script src="js/bootstrap.bundle.min.js" type="text/javascript"></script>
-            <script defer src="js/myscript.js" type="text/javascript"></script>
+        </div><!-- end Create/update user Modal -->
+    </div>
+    <script src="js/jquery-3.4.1.min.js" type="text/javascript"></script>
+    <script src="js/bootstrap.bundle.min.js" type="text/javascript"></script>
+    <script defer src="js/myscript.js" type="text/javascript"></script>
 </body>
 
 </html>

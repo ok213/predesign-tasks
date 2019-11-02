@@ -41,6 +41,7 @@ public class UserServiceApiImpl implements UserServiceApi {
 
     @Override
     public void updateUser(User user) {
+        getUserById(user.getId()).setRoles(null);
         user.setRoles(getUserRoles(user.getRoles()));
         userRepository.save(user);
     }
