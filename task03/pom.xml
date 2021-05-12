@@ -16,7 +16,7 @@
     <org.hibernate.hibernate.version>5.4.4.Final</org.hibernate.hibernate.version>
     <org.springframework.version>5.2.0.RELEASE</org.springframework.version>
     <org.apache.tomcat.version>9.0.26</org.apache.tomcat.version>
-    <spring-security.version>5.2.0.RELEASE</spring-security.version>
+    <spring-security.version>5.2.10.RELEASE</spring-security.version>
   </properties>
 
   <dependencies>
