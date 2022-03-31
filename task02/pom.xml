@@ -14,7 +14,7 @@
         <maven.compiler.target>1.8</maven.compiler.target>
         <mysql.mysql-connector-java.version>8.0.17</mysql.mysql-connector-java.version>
         <org.hibernate.hibernate.version>5.4.4.Final</org.hibernate.hibernate.version>
-        <org.springframework.version>5.2.0.RELEASE</org.springframework.version>
+        <org.springframework.version>5.3.18</org.springframework.version>
         <org.apache.tomcat.version>9.0.26</org.apache.tomcat.version>
     </properties>
 
